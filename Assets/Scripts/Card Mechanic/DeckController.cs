@@ -46,9 +46,10 @@ public class DeckController : MonoBehaviour {
                 return -1;
             }
         }
+
         // intitialize the opponents deck
         private void buildOpponentDeck() {
-                
+                    
         }
 
         private List<Card> generateCardPool (int poolSize){

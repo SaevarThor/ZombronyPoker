@@ -100,7 +100,6 @@ public class BoardController : MonoBehaviour {
             // Send signal
             return -1;
         }
-
         // set the card state
         card.setCardState(CardState.OnBoard);
 
