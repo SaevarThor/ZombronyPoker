@@ -58,8 +58,10 @@ public class BoardController : MonoBehaviour {
 
     }
 
-    public void Attack(){
-
+    public void Attack(Card attacker, Card target){
+        if (attacker.Attack(target) != -1){
+            // on success trigger some event to tell the gui
+        }
     }
 
     public int PlayCard(Card card){

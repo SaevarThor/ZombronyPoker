@@ -61,4 +61,11 @@ public class Card {
         Cost = (int)Mathf.Floor(2f*Health + 2.5f*Damgae);
     }
 
+    public int Attack(Card targetCard){
+        if (state == CardState.OnBoard){
+            targetCard.CurrentHealth -= Damgae;
+            return 0;
+        } else 
+            return -1;
+    }
 }
