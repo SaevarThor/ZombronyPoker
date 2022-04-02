@@ -28,7 +28,7 @@ public class Card {
     public string CardName;
     public string Description;
     public int Health;
-    public int Damgae;
+    public int Damage;
     public int Cost;
     public CardState state; 
     public CardType type; 
@@ -47,7 +47,7 @@ public class Card {
         CardName = _cardName;
         Description = _description;
         Health = _health;
-        Damgae = _damage;
+        Damage = _damage;
         state = CardState.InPool;
         CurrentHealth = Health;
         calculateCost();
@@ -58,14 +58,26 @@ public class Card {
     }
     // Give the card a cost based on its attributes
     private void calculateCost(){
-        Cost = (int)Mathf.Floor(2f*Health + 2.5f*Damgae);
+        Cost = (int)Mathf.Floor(2f*Health + 2.5f*Damage);
     }
 
     public int Attack(Card targetCard){
         if (state == CardState.OnBoard){
-            targetCard.CurrentHealth -= Damgae;
+            targetCard.TakeDamage(Damage);
+            // send a signal
             return 0;
-        } else 
-            return -1;
+        }
+        //send a signal
+        return -1;
+    }
+
+    public int TakeDamage(int damage){
+        if (state == CardState.OnBoard) {
+            CurrentHealth -= damage;
+            // send a signal
+            return 0;
+        }
+        // send a signal
+        return -1;
     }
 }

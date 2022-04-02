@@ -14,6 +14,11 @@ public class BoardController : MonoBehaviour {
     private int turn;
     private int cardsLeft = 0;
     
+    // required turn action flags
+    private bool playerHasAttacked = false;
+    private bool opponentHasAttacked = false;
+    private bool cleanupDone = false;
+
     private void Awake() {
             if (Instance != null && Instance != this){
                 Destroy(this);
@@ -32,6 +37,25 @@ public class BoardController : MonoBehaviour {
         }
 
         resourcepool = 100;
+    }
+
+    private void Update() {
+        if (playerHasAttacked && opponentHasAttacked && cleanupDone){
+            turn ++;
+            //send some signal to the gui
+            playerHasAttacked = false;
+            opponentHasAttacked = false;
+            cleanupDone = false;
+        }else if (playerHasAttacked && opponentHasAttacked && !cleanupDone) {
+            // do cleanup, remove destroyed cards and such
+            cleanupDone = true;
+        } else if (playerHasAttacked && !opponentHasAttacked) {
+            //pick a random card and attack for now, probably make it smarter in the future
+            
+        } else if (!playerHasAttacked) {
+            //wait for the player to make an attack
+
+        }
     }
 
     // Actions
@@ -54,26 +78,33 @@ public class BoardController : MonoBehaviour {
         }
     }
 
+    // maybe implement
     public void ShuffleDeck(){
 
     }
 
     public void Attack(Card attacker, Card target){
         if (attacker.Attack(target) != -1){
-            // on success trigger some event to tell the gui
+            if (attacker.faction == CardFaction.player){
+                //send signal to gui
+            } else {
+                //send signal to gui    
+            }
         }
     }
-
+    
+    // gives a card the OnBoard status
     public int PlayCard(Card card){
         // cost check
         if (resourcepool < card.Cost){
+            // Send signal
             return -1;
         }
 
         // set the card state
         card.setCardState(CardState.OnBoard);
 
-        // trigger some kind of event so the board can update
+        // Send signal
         return 0;
     }
 
