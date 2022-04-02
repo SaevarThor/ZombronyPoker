@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -46,12 +44,8 @@ public class GameManager : MonoBehaviour
         //Set camera target and zoom 
         //camera.transform.position = Vector3.Lerp(camera.StartPos, fightingTable.CameraPosition.position, 1); 
         zoomCamera = true;
-
-
         yield return new WaitForSeconds(5);
-
         zoomCamera = false;
-
         //INIT COMBAT
     }
 
@@ -59,7 +53,8 @@ public class GameManager : MonoBehaviour
     {
         if (zoomCamera)
         {
-            camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, Quaternion.LookRotation(attackPosition - camera.transform.position), 1*Time.deltaTime);
+            Transform cameraTrans = camera.transform;
+            cameraTrans.rotation = Quaternion.Slerp(cameraTrans.rotation, Quaternion.LookRotation(attackPosition - cameraTrans.position), 1*Time.deltaTime);
             camera.orthographicSize -= (Time.deltaTime * 3);
         }
     }
@@ -78,5 +73,10 @@ public class GameManager : MonoBehaviour
             //Kill Players
             //End game
         }
+    }
+
+    public void Search(SearchContainer container)
+    {
+        Debug.Log("Searching...");
     }
 }

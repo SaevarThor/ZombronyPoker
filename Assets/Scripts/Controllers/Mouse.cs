@@ -22,7 +22,22 @@ public class Mouse : MonoBehaviour
 
         if (Physics.Raycast(ray, out _hit))
         {
-            Player.Instance.MovePlayer(_hit.point);
+            if (_hit.transform.CompareTag("Interactible"))
+            {
+                IInteractible interactable = _hit.transform.GetComponent<IInteractible>();
+                if ((SearchContainer)interactable)
+                {
+                    Player.Instance.MovePlayer(interactable.InteractPos(), interactable as SearchContainer);
+                }
+                else
+                {
+                    Player.Instance.MovePlayer(interactable.InteractPos());
+                }
+            }
+            else
+            {
+                Player.Instance.MovePlayer(_hit.point);
+            }
         }
     }
 }
