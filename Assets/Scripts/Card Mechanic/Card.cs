@@ -34,7 +34,8 @@ public class Card {
     public CardType type; 
     public CardFaction faction; 
     public CardGender gender;
-    public int DamageTaken;
+
+    public int CurrentHealth;
 
     public Card(string _cardName, 
     string _description, 
@@ -48,7 +49,7 @@ public class Card {
         Health = _health;
         Damgae = _damage;
         state = CardState.InPool;
-        DamageTaken = 0;
+        CurrentHealth = Health;
         calculateCost();
     }
 

@@ -27,6 +27,7 @@ public class DeckController : MonoBehaviour {
         private void Start() {
             PlayerCardPool = generateCardPool(10);
             OpponentCardPool  = generateCardPool(10);
+            buildOpponentDeck();
         }
 
         public int AddCardToDeck (Card card){
@@ -47,7 +48,7 @@ public class DeckController : MonoBehaviour {
         }
         // intitialize the opponents deck
         private void buildOpponentDeck() {
-            
+                
         }
 
         private List<Card> generateCardPool (int poolSize){
@@ -71,7 +72,7 @@ public class DeckController : MonoBehaviour {
             flair[Random.Range(0,flair.Length)]);
 
             // Create a new card with random stats 
-            return new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardFaction.player, CardType.Companion);
+            return new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardGender.man, CardFaction.player, CardType.Companion);
             
         }
 }

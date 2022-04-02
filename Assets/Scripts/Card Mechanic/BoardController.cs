@@ -4,13 +4,16 @@ using System.Linq;
 
 public class BoardController : MonoBehaviour {
     public static BoardController Instance;
+    public int resourcepool;
     
     private DeckController deckController => DeckController.Instance;
 
-    private List<Card> opponentDeck = new List<Card>();
-    private List<Card> playerDeck = new List<Card>();
+    private List<Card> opponentDeck;
+    private List<Card> playerDeck;
 
     private int turn;
+    private int cardsLeft = 0;
+    
     private void Awake() {
             if (Instance != null && Instance != this){
                 Destroy(this);
@@ -20,14 +23,38 @@ public class BoardController : MonoBehaviour {
     }
 
     private void Start() {
-        // copy inn the player deck
-        playerDeck = new List<Card>(deckController.PlayerDeck.ToList());
-        opponentDeck = new List<Card>(deckController.OpponentDeck.ToList());
-    
+        playerDeck = deckController.PlayerDeck;
+        opponentDeck = deckController.OpponentDeck;
+
+        foreach (Card card in playerDeck){
+            if (card.state == CardState.InDeck)
+                cardsLeft ++;
+        }
+
+        resourcepool = 100;
     }
 
     // Actions
-    public void DrawCard(Card cardToDraw){
+    // Draw a card into the hand, returns null if no cards are left.
+    public Card DrawCard(CardFaction faction){
+        if (faction == CardFaction.player){
+            foreach (Card card in playerDeck){
+                if (card.state == CardState.InDeck){
+                    return card;
+                }
+            }
+            return null;
+        } else {
+            foreach (Card card in opponentDeck){
+                if (card.state == CardState.InDeck){
+                    return card;
+                }
+            }
+            return null;
+        }
+    }
+
+    public void ShuffleDeck(){
 
     }
 
@@ -35,7 +62,17 @@ public class BoardController : MonoBehaviour {
 
     }
 
-    public void PlayCard(){
+    public int PlayCard(Card card){
+        // cost check
+        if (resourcepool < card.Cost){
+            return -1;
+        }
 
+        // set the card state
+        card.setCardState(CardState.OnBoard);
+
+        // trigger some kind of event so the board can update
+        return 0;
     }
+
 }
