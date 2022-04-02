@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     private Table fightingTable;
     private Vector3 attackPosition;
     private bool zoomCamera;
+
+    public int LifeTime = 20;
     
     private void Awake()
     {
@@ -59,6 +61,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void MoveZones(int distance)
+    {
+        LifeTime -= distance;
+
+        if (LifeTime <= 0)
+        {
+            //Turn Player Zombie. 
+        }
+    }
+
     public void EndCombat(bool win)
     {
         if (win)
@@ -78,5 +90,6 @@ public class GameManager : MonoBehaviour
     public void Search(SearchContainer container)
     {
         Debug.Log("Searching...");
+        EventManager.Instance.RequestEvent(container.UiPicture, container.ContainerText, container);
     }
 }

@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.Search(searchContainer);
             SetMovement(false);
+            isSearching = false;
         }
     }
 }
