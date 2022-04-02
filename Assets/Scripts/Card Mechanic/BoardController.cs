@@ -42,7 +42,7 @@ public class BoardController : MonoBehaviour {
     private void Update() {
         if (playerHasAttacked && opponentHasAttacked && cleanupDone){
             turn ++;
-            //send some signal to the gui
+            // send some signal to the gui
             playerHasAttacked = false;
             opponentHasAttacked = false;
             cleanupDone = false;
@@ -50,11 +50,11 @@ public class BoardController : MonoBehaviour {
             // do cleanup, remove destroyed cards and such
             cleanupDone = true;
         } else if (playerHasAttacked && !opponentHasAttacked) {
-            //pick a random card and attack for now, probably make it smarter in the future
-            
+            // pick a random card and attack for now, probably make it smarter in the future
+            // send signal 
         } else if (!playerHasAttacked) {
-            //wait for the player to make an attack
-
+            // wait for the player to make an attack
+            // send signal 
         }
     }
 
