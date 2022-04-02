@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     private float combatInitTimer = 2;
     private float dropHeight = 40;
 
+    private Zombie fightingZombie;
+    private Table fightingTable;
+    private Vector3 attackPosition;
+    private bool zoomCamera;
+
+    public int LifeTime = 20;
+    
     private void Awake()
     {
         if (Instance != this && Instance != null)
@@ -39,7 +46,43 @@ public class GameManager : MonoBehaviour
 
     public void EndCombat()
     {
-        //Kill off zombie and players. 
-        Player.Instance.SetMovement(true);
+        if (zoomCamera)
+        {
+            Transform cameraTrans = camera.transform;
+            cameraTrans.rotation = Quaternion.Slerp(cameraTrans.rotation, Quaternion.LookRotation(attackPosition - cameraTrans.position), 1*Time.deltaTime);
+            camera.orthographicSize -= (Time.deltaTime * 3);
+        }
+    }
+
+    public void MoveZones(int distance)
+    {
+        LifeTime -= distance;
+
+        if (LifeTime <= 0)
+        {
+            //Turn Player Zombie. 
+        }
+    }
+
+    public void EndCombat(bool win)
+    {
+        if (win)
+        {
+            //Kill off zombie and players. 
+            Player.Instance.SetMovement(true);
+            fightingZombie.Die();
+        }
+        else
+        {
+            fightingZombie.Celebrate();
+            //Kill Players
+            //End game
+        }
+    }
+
+    public void Search(SearchContainer container)
+    {
+        Debug.Log("Searching...");
+        EventManager.Instance.RequestEvent(container.UiPicture, container.ContainerText, container);
     }
 }

@@ -31,6 +31,7 @@ public class EventManager : MonoBehaviour
         image.sprite = newImage;
         text.text = newText;
         acceptButton.onClick.AddListener(request.AcceptRequest);
+        acceptButton.onClick.AddListener(Decline);
         declineButton.onClick.AddListener(Decline);
         uiPanel.SetActive(true); 
     }
