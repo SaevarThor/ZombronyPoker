@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private bool canMove;
+    private bool canMove = true;
 
     private void Awake()
     {
