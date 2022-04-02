@@ -1,16 +1,41 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class BoardController : MonoBehaviour {
-    int turn;
+    public static BoardController Instance;
+    
+    private DeckController deckController => DeckController.Instance;
 
-    Card[] playerHand = new Card[10];
-    Card[] playerDeck = new Card[25];
-    Card[] playeBoard = new Card[10];
+    private List<Card> opponentDeck = new List<Card>();
+    private List<Card> playerDeck = new List<Card>();
 
-    Card[] oponentHand = new Card[10];
-    Card[] opponentBoard = new Card[10];
+    private int turn;
+    private void Awake() {
+            if (Instance != null && Instance != this){
+                Destroy(this);
+            } else {
+                Instance = this;
+            }
+    }
 
     private void Start() {
-        
+        // copy inn the player deck
+        playerDeck = new List<Card>(deckController.PlayerDeck.ToList());
+        opponentDeck = new List<Card>(deckController.OpponentDeck.ToList());
+    
+    }
+
+    // Actions
+    public void DrawCard(Card cardToDraw){
+
+    }
+
+    public void Attack(){
+
+    }
+
+    public void PlayCard(){
+
     }
 }
