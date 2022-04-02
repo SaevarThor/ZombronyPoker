@@ -15,7 +15,7 @@ public class Zombie : MonoBehaviour
     [SerializeField] private Transform[] patrolPoints;
 
     private int patrolId;
-    private GameManager manager;
+    private EncounterManager manager;
     private zombieState state = zombieState.Patroling;
     private NavMeshAgent agent;
     private Vector3 curTarget;
@@ -25,7 +25,7 @@ public class Zombie : MonoBehaviour
     private void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
-        manager = GameManager.Instance;
+        manager = EncounterManager.Instance;
 
         patrolId = 0;
 

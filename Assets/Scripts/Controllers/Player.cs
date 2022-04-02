@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
         if (Vector3.Distance(transform.position, agent.destination) < 1)
         {
-            GameManager.Instance.Search(searchContainer);
+            EncounterManager.Instance.Search(searchContainer);
             SetMovement(false);
             isSearching = false;
         }
