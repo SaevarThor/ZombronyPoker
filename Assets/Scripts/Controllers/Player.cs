@@ -10,8 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotationSpeed;
 
     private NavMeshAgent agent;
-
     private bool canMove = true;
+    private bool isSearching;
+    private SearchContainer searchContainer;
 
     private void Awake()
     {
@@ -29,10 +30,12 @@ public class Player : MonoBehaviour
         agent.angularSpeed = rotationSpeed;
     }
 
-    public void MovePlayer(Vector3 pos)
+    public void MovePlayer(Vector3 pos, SearchContainer container = null)
     {
         if (!canMove) return;
         agent.SetDestination(pos);
+        searchContainer = container;
+        isSearching = container;
     }
 
 
@@ -42,6 +45,17 @@ public class Player : MonoBehaviour
         if (!value)
         {
             agent.SetDestination(this.transform.position);
+        }
+    }
+
+    private void Update()
+    {
+        if (!isSearching || !canMove) return;
+
+        if (Vector3.Distance(transform.position, agent.destination) < 1)
+        {
+            GameManager.Instance.Search(searchContainer);
+            SetMovement(false);
         }
     }
 }
