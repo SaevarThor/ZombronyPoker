@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int MapPosition = 0;
+    public int ZombificationTimer = 0;
+    public int ZombificationMaxValue = 20;
+    public bool PlayerIsDead = false;
 
     private void Awake()
     {
@@ -20,5 +23,24 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);       
+    }
+
+    public void SetZombification(int amount)
+    {
+        ZombificationTimer += amount;
+
+        if (ZombificationMaxValue < ZombificationTimer)
+        {
+            PlayerIsDead = true; 
+            StartCoroutine(WaitAndLoad(3, "Encounter_PlayerZombie"));
+            Debug.Log("Kill Player");
+        }
+    }
+
+    private IEnumerator WaitAndLoad(float timer, string sceneName)
+    {
+        yield return new WaitForSeconds(timer); 
+        
+        SceneLoadingManager.LoadNewScene(sceneName);
     }
 }
