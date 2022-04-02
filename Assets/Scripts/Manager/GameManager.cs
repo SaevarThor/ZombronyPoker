@@ -1,46 +1,45 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
-    public int MapPosition = 0;
-    public int ZombificationTimer = 0;
-    public int ZombificationMaxValue = 20;
-    public bool PlayerIsDead = false;
+    
+    [SerializeField] private GameObject table;
+    private float combatInitTimer = 2;
+    private float dropHeight = 40;
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != this && Instance != null)
             Destroy(this);
         else
             Instance = this;
     }
 
-    void Start()
+    public void RequestCombat(Vector3 playerPos, Vector3 zombiePos)
     {
-        DontDestroyOnLoad(gameObject);       
-    }
-
-    public void SetZombification(int amount)
-    {
-        ZombificationTimer += amount;
-
-        if (ZombificationMaxValue < ZombificationTimer)
-        {
-            PlayerIsDead = true; 
-            StartCoroutine(WaitAndLoad(3, "Encounter_PlayerZombie"));
-            Debug.Log("Kill Player");
-        }
-    }
-
-    private IEnumerator WaitAndLoad(float timer, string sceneName)
-    {
-        yield return new WaitForSeconds(timer); 
+        float x = (playerPos.x + zombiePos.x) / 2;
+        float y = (playerPos.y + zombiePos.y) / 2;
+        float z = (playerPos.z + zombiePos.z) / 2;
+        Vector3 attackPosition = new Vector3(x, y, z);
+        attackPosition.y += dropHeight;
+        Instantiate(table, attackPosition, Quaternion.identity);
         
-        SceneLoadingManager.LoadNewScene(sceneName);
+        Player.Instance.SetMovement(false);
+    }
+
+    private IEnumerator StartCombat()
+    {
+        yield return new WaitForSeconds(combatInitTimer);
+        //Set camera target and zoom 
+        
+    }
+
+    public void EndCombat()
+    {
+        //Kill off zombie and players. 
+        Player.Instance.SetMovement(true);
     }
 }
