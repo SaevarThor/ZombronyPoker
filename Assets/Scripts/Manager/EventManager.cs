@@ -17,8 +17,6 @@ public class EventManager : MonoBehaviour
     [SerializeField] private Button acceptButton;
     [SerializeField] private Button declineButton;
 
-    private UnityEvent[] unityEvents;
-
     private void Awake()
     {
         if (Instance != this && Instance != null)
@@ -27,8 +25,19 @@ public class EventManager : MonoBehaviour
             Instance = this; 
     }
 
-    public void RequestEvent(Sprite newImage, string newText)
+    public void RequestEvent(Sprite newImage, string newText, IRequest request)
     {
-      
+        Player.Instance.SetMovement(false);
+        image.sprite = newImage;
+        text.text = newText;
+        acceptButton.onClick.AddListener(request.AcceptRequest);
+        declineButton.onClick.AddListener(Decline);
+        uiPanel.SetActive(true); 
+    }
+    
+    private void Decline()
+    {
+        Player.Instance.SetMovement(true);
+        uiPanel.SetActive(false);
     }
 }
