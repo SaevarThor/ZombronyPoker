@@ -25,6 +25,8 @@ public class GUI_CardInteraction : MonoBehaviour {
         
         if (thisCard.faction == CardFaction.Enemy)
             this.gameObject.tag = "OpponentCard";
+
+        thisCard.onCardTakeDamage += UpdateCardInfo;
     }
 
     private void Update() {
@@ -45,5 +47,13 @@ public class GUI_CardInteraction : MonoBehaviour {
 
         thisCard.OnCardDestroyed -= DestoryCard;
         Destroy(this.gameObject);
+    }
+
+    public void UpdateCardInfo(){
+        Debug.Log("update card info");
+        cardTitle.text = thisCard.CardName;
+        cardDesc.text = thisCard.Description;
+        cardHealth.text = thisCard.Health.ToString();
+        cardAttack.text = thisCard.Damage.ToString();
     }
 }

@@ -36,6 +36,11 @@ public class BoardController : MonoBehaviour {
     public bool opponentHasAttacked = false;
     public bool cleanupDone = false;
 
+    // flags
+
+    public bool hasDrawnCard = false;
+    public bool hasPlayedCard = false;
+
     private void Awake() {
             if (Instance != null && Instance != this){
                 Destroy(this);
@@ -65,6 +70,8 @@ public class BoardController : MonoBehaviour {
     private void Update() {
 
         if (ActiveBattle) {
+
+            // Check for win condition
             if (cardsLeft <= 0){
                 //player has lost
                 if (OnPlayerLoss != null)
@@ -79,11 +86,16 @@ public class BoardController : MonoBehaviour {
                 cleanUp();
                 ActiveBattle = false;
             }
-            if (playerHasAttacked){
+
+            // Ends the turn after one attack
+            /*if (playerHasAttacked){
                 playerHasAttacked = false;
                 endTurn(CardFaction.player);
-            }
+            } */
+
             if (!PlayerTurn && !OpponentTurn && !cleanupDone){
+
+                ResetForNextTurn();
                 cleanupDone = true;
             } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
                 turn ++;
@@ -100,18 +112,19 @@ public class BoardController : MonoBehaviour {
     }
 
     // Actions
-    // Draw a card into the hand, returns null if no cards are left.
+    // Draw a card into the hand, returns null if no cards are left or if player has already drawn a card this round.
     public Card DrawCard(CardFaction faction){
-        if (faction == CardFaction.player){
+        if (faction == CardFaction.player && !hasDrawnCard ){
             foreach (Card card in playerDeck){
                 if (card.state == CardState.InDeck && cardsLeft > 0){
                     LastDrawnCard = card;
                     card.setCardState(CardState.OnHand);
+                    hasDrawnCard = true;
                     return card;
                 }
             }
             return null;
-        } else {
+        } else if(faction == CardFaction.Enemy){
             foreach (Card card in opponentDeck){
                 if (card.state == CardState.InDeck){
                     LastDrawnCard = card;
@@ -120,7 +133,10 @@ public class BoardController : MonoBehaviour {
                 }
             }
             return null;
+        } else {
+            return null;
         }
+
     }
 
     // maybe implement
@@ -128,11 +144,14 @@ public class BoardController : MonoBehaviour {
 
     }
 
+    // The attack happens in the firs IF statement I keep forgeting 
     public void Attack(Card attacker, Card target){
         if (attacker.Attack(target) != -1){
             if (attacker.faction == CardFaction.player){
                 //send signal to gui
-                endTurn(CardFaction.player);
+
+                // end the turn for the player on attack
+                //endTurn(CardFaction.player);
             } else {
                 //send signal to gui    
             }
@@ -142,7 +161,7 @@ public class BoardController : MonoBehaviour {
     // gives a card the OnBoard status
     public int PlayCard(Card card){
         // cost check for the player
-        if (card.faction != CardFaction.Enemy && resourcepool < card.Cost){
+        if ((card.faction != CardFaction.Enemy && resourcepool < card.Cost) || card.HasAttackedThisRound == true){
             // Send signal
             return -1;
         }
@@ -150,6 +169,7 @@ public class BoardController : MonoBehaviour {
         // set the card state
         card.setCardState(CardState.OnBoard);
         LastPlayedCard = card;
+        hasPlayedCard = true;
 
         // Send signal
         return 0;
@@ -158,6 +178,8 @@ public class BoardController : MonoBehaviour {
     public void endTurn(CardFaction faction){
         if (faction == CardFaction.player){
             PlayerTurn = false;
+            hasPlayedCard = false;
+            hasDrawnCard = false;
             OpponentTurn = true;
         } else{
             Debug.Log("opponent ended turn");
@@ -182,11 +204,52 @@ public class BoardController : MonoBehaviour {
         ActiveBattle = true;
     }
 
-    private void cleanUp(){
+    private void ResetForNextTurn(){
+        //Make sure the cards on the board are ready for the next round
         foreach (Card card in playerDeck ){
-            if (card.state == CardState.Destroyed){
-                deckController.removeCardFromDeck(card);
+            if (card.state == CardState.OnBoard){
+                card.resetState();
             }
         }
+
+        //Make sure the cards on the board are ready for the next round
+        foreach (Card card in opponentDeck ){
+            if (card.state == CardState.OnBoard){
+                card.resetState();
+            }
+        }
+
+        hasDrawnCard = false;
+        hasPlayedCard = false;
+
+    }
+
+    // Cleans up stuff at the end of a fight
+    private void cleanUp(){
+
+        List<Card> cardsToRemove = new List<Card>();
+        //Make sure the cards on the board are ready for the next round
+        foreach (Card card in playerDeck ){
+            if (card.state == CardState.Destroyed){
+                cardsToRemove.Add(card);
+            }
+            if (card.state == CardState.OnBoard){
+                card.resetState();
+            }
+        }
+
+        foreach (Card card in cardsToRemove){
+            deckController.removeCardFromDeck(card);
+        }
+
+        //Make sure the cards on the board are ready for the next round
+        foreach (Card card in opponentDeck ){
+            if (card.state == CardState.OnBoard){
+                card.resetState();
+            }
+        }
+
+        hasDrawnCard = false;
+        hasPlayedCard = false;
     }
 }
