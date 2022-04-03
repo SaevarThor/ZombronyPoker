@@ -20,7 +20,7 @@ public class GUI_CardBattle : MonoBehaviour
 
     [SerializeField] private Camera fightCamera;
 
-    private void OnEnable() {
+    private void Start() {
         BoardController.Instance.OnTurnEnd += turnEnd;
     }
         

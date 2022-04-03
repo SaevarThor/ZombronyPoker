@@ -311,7 +311,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5082343572358734747}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 3.0816998, y: -0.49, z: 10.67}
+  m_LocalPosition: {x: 2.64, y: -0.49, z: 10.67}
   m_LocalScale: {x: 0.37244, y: 0.37244, z: 0.076163985}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -724,7 +724,7 @@ MonoBehaviour:
   handInteraction: {fileID: 5082343572795980150}
   selectedCard: {fileID: 0}
   selectedEnemyCard: {fileID: 0}
-  fightCamera: {fileID: 0}
+  fightCamera: {fileID: 5082343572065281511}
 --- !u!114 &5082343572737017281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 128
-  fightCamera: {fileID: 0}
+  fightCamera: {fileID: 5082343572065281511}
 --- !u!1 &5082343573197696255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,7 +1410,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5082343573517290817}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.0816998, y: -0.5200001, z: 8.16}
+  m_LocalPosition: {x: 2.6399994, y: -0.5200001, z: 8.16}
   m_LocalScale: {x: 0.37244, y: 0.37244, z: 0.076163985}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1432,7 +1432,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5082343573517290817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5082343573517290817}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1f0758afbe46a448b6e9df51ec02d2, type: 3}
   m_Name: 
@@ -1488,7 +1488,7 @@ BoxCollider:
   m_GameObject: {fileID: 5082343573517290817}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 2.220446e-16, z: 10}
   m_Center: {x: 0, y: 0, z: 0.000045776367}
@@ -1839,7 +1839,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Table_01
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2974975441326600736, guid: 72c4408d0c9cd5148a3fee7e7bf65341, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 72c4408d0c9cd5148a3fee7e7bf65341, type: 3}
 --- !u!4 &1648143889771330862 stripped
 Transform:

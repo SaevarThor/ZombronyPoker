@@ -10,10 +10,6 @@ public class GUI_HandInteractions : MonoBehaviour {
         
     }
 
-    private void Update() {
-        
-    }
-
     public GameObject InstansiateNewCard(Card card){
         //instansiate gameobject
         GameObject newCard = null;
