@@ -24,7 +24,7 @@ public class Mouse : MonoBehaviour
         {
             if (_hit.transform.CompareTag("Interactible"))
             {
-                IInteractible interactable = _hit.transform.GetComponent<IInteractible>();
+                var interactable = _hit.transform.GetComponent<IInteractible>();
                 if (interactable is SearchContainer)
                 {
                     Player.Instance.MovePlayer(interactable.InteractPos(), interactable as SearchContainer);
