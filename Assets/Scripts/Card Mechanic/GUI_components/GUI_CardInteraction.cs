@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GUI_CardInteraction : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class GUI_CardInteraction : MonoBehaviour {
     [SerializeField] private TMP_Text cardHealth;
     [SerializeField] private TMP_Text cardAttack;
     [SerializeField] private TMP_Text cardCost;
+    [SerializeField] private Image profilePic;
 
     private void Start() {
         DeSelect();
@@ -21,6 +23,7 @@ public class GUI_CardInteraction : MonoBehaviour {
         cardDesc.text = thisCard.Description;
         cardHealth.text = thisCard.CurrentHealth.ToString();
         cardAttack.text = thisCard.Damage.ToString();
+        profilePic.sprite = thisCard.CardPic;
         //cardCost.text = thisCard.Cost.ToString();
         
         if (thisCard.faction == CardFaction.Enemy)

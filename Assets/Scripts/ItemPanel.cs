@@ -49,13 +49,12 @@ public class ItemPanel : MonoBehaviour
         Image.sprite = ItemImage;
     }
     
-    public void SetCardPanel()
+    public void SetCardPanel(string charName)
     {
         UiParent.SetActive(true);
-        Text.text = CardFlavorText[Random.Range(0, CardFlavorText.Length)];
+        Text.text = CardFlavorText[Random.Range(0, CardFlavorText.Length)] + $"\n {charName} has entered the fight!";
         ButtonText.text = CardButtonText[Random.Range(0, CardButtonText.Length)];
         Image.sprite = CardImage;
-
     }
     
     public void SetFightPanel()

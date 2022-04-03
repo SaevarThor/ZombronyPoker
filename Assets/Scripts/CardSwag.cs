@@ -9,4 +9,9 @@ public class CardSwag : ScriptableObject
     public string[] LastNames;
     public string[] Flairs;
     public Sprite[] Pictures;
+
+    public string[] ZombieNames;
+    public string[] ZombieLastNames;
+    public string[] ZombieFliars;
+    public Sprite[] ZombiePictures;
 }

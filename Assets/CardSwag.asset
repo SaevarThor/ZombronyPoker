@@ -12,7 +12,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba473adeab8a083498dc8841f0d57b6b, type: 3}
   m_Name: CardSwag
   m_EditorClassIdentifier: 
-  FirstNames: []
-  LastNames: []
-  Flairs: []
-  Pictures: []
+  FirstNames:
+  - Larry
+  - Davis
+  - "S\xE6var"
+  - Matias
+  - Ace
+  - Harald
+  - Gunther
+  - Heimdall
+  - Horson
+  - Jessica
+  - Jonthan
+  - Flint
+  - Lubbock
+  LastNames:
+  - Williams
+  - Paulson
+  - Sveinson
+  - Bye
+  - Boa
+  - Hundall
+  - California
+  - Magnets
+  - Lubbock
+  Flairs:
+  - '"Of the Flesh"'
+  - '"The Destoyer"'
+  - '"The Cuckhold"'
+  - '"The Sickly"'
+  - '"Of The Valley"'
+  - '"Certified Badass"'
+  - '"The Spin Doctor"'
+  - '"Rat King"'
+  - '"Rat Queen"'
+  - '"Battery Licker"'
+  - '"Lubbock"'
+  - '"Of Many Moons"'
+  - '"Of The Twin Suns"'
+  Pictures:
+  - {fileID: 21300000, guid: 8991ff568c7732449afa68740c8e9975, type: 3}
+  - {fileID: 21300000, guid: e0a84349e91997149adacbc78261f10b, type: 3}
+  - {fileID: 21300000, guid: 9fbe3c11a7ca20c4e9df7d5a5faaeb03, type: 3}
+  - {fileID: 21300000, guid: be5f0dcbdeac8074faa9b328978a0a57, type: 3}
+  - {fileID: 21300000, guid: 1373b8d75bbdcb943a7923be969736b1, type: 3}
+  - {fileID: 21300000, guid: 470c41918c88b244bad591753bd05bb7, type: 3}
+  - {fileID: 21300000, guid: 33fb9cd08fbee95459a64daceb781727, type: 3}
+  - {fileID: 21300000, guid: b85c3977190f430428fe86493a8b9754, type: 3}
+  - {fileID: 21300000, guid: df69647e42bec644bbf011001d6ff9ca, type: 3}
+  - {fileID: 21300000, guid: 2789f45d5c222d54c849e5897b4855c6, type: 3}
+  - {fileID: 21300000, guid: eade6ccc17d41af429b0ac7532fd182b, type: 3}
+  - {fileID: 21300000, guid: 09403b0683a5d06459d9bcb58a844a2a, type: 3}
+  - {fileID: 21300000, guid: 806d6154d3e09824d9e730db6338acf8, type: 3}
+  - {fileID: 21300000, guid: f710759f83707224687f4ea718c1da96, type: 3}
+  - {fileID: 21300000, guid: 5b441480c5c38f642903c85f2e598084, type: 3}
+  - {fileID: 21300000, guid: 14e04d85f6312084aaa80c3306d2d088, type: 3}
+  ZombieNames:
+  - Urg
+  - Rawr
+  - AAAAAA
+  - Jurgh
+  - Mr. Poppins
+  - Brain
+  - Adrian
+  - Brian
+  - Broin
+  ZombieLastNames:
+  - Gurgle
+  - Urgle
+  ZombieFliars:
+  - '"The Intelligent"'
+  - '"Of the Compost"'
+  - '"The Crypt Walker"'
+  - '"The Crypt Dancer"'
+  - '"Window Peeper"'
+  - '"The Chosen One"'
+  ZombiePictures:
+  - {fileID: 21300000, guid: ead2068742297274cb3618e4d94f906a, type: 3}
+  - {fileID: 21300000, guid: 9de0ecf381a14674cb80887ef9c5e130, type: 3}

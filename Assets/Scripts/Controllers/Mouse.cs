@@ -31,6 +31,14 @@ public class Mouse : MonoBehaviour
                 }
                 else if (interactable is LeaveArea)
                 {
+                    LeaveArea area = (LeaveArea) interactable;
+
+                    if (area.IsEnding)
+                    {
+                        SceneLoadingManager.LoadNewScene("WinScene");
+                        return;
+                    }
+                    
                     Player.Instance.LeaveLevel(interactable.InteractPos());
                 }
                 else

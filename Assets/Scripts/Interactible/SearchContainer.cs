@@ -59,7 +59,11 @@ public class SearchContainer : MonoBehaviour, IInteractible, IRequest
         if (random < (itemWeight + fightWeight + cardWeight))
         {
             //Give card
-            EncounterManager.Instance.ItemVisual.SetCardPanel();
+            Card newSurvivor = DeckController.Instance.generateCard();
+            newSurvivor.state = CardState.InDeck;
+            EncounterManager.Instance.ItemVisual.SetCardPanel(newSurvivor.CardName);
+            DeckController.Instance.PlayerDeck.Add(newSurvivor);
+            
             return;
         }
         

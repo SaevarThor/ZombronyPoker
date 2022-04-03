@@ -34,7 +34,7 @@ public class Card {
     public int Health;
     public int Damage;
     public int Cost;
-    public string CardPic;
+    public Sprite CardPic;
     public CardState state; 
     public CardType type; 
     public CardFaction faction; 
@@ -57,6 +57,7 @@ public class Card {
     string _description, 
     int _health, 
     int _damage, 
+    Sprite pic,
     CardGender _gender, 
     CardFaction _faction, 
     CardType _type = CardType.Companion
@@ -73,7 +74,8 @@ public class Card {
         CardId = Guid.NewGuid().ToString();
         HasAttackedThisRound = false;
         calculateCost();
-        
+        CardPic = pic;
+
     }
 
     public void setCardState(CardState _state){

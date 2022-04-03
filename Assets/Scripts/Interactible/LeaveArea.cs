@@ -5,6 +5,8 @@ using UnityEngine;
 public class LeaveArea : MonoBehaviour, IInteractible
 {
     [SerializeField] private Transform iPos;
+    public bool IsEnding;
+    
     public void Interact()
     {
     }

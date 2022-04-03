@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     private NavMeshAgent agent;
     private bool canMove = true;
     private bool isSearching;
-    private bool isLeaving; 
+    private bool isLeaving;
+    private bool isWin;
     private SearchContainer searchContainer;
 
     private void Awake()
@@ -40,10 +41,11 @@ public class Player : MonoBehaviour
         isSearching = container;
     }
 
-    public void LeaveLevel(Vector3 pos)
+    public void LeaveLevel(Vector3 pos, bool _isWin = false)
     {
         agent.SetDestination(pos);
-        isLeaving = true; 
+        isLeaving = true;
+        isWin = _isWin;
     }
 
 
@@ -84,7 +86,14 @@ public class Player : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, agent.destination) < 1)
             {
-                SceneLoadingManager.LoadNewScene("OverWorld");
+                if (!isWin)
+                {
+                    SceneLoadingManager.LoadNewScene("OverWorld");
+                }
+                else
+                {
+                    SceneLoadingManager.LoadNewScene("WinScene");
+                }
             }   
         }
         if (!isSearching || !canMove) return;
