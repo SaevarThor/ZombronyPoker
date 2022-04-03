@@ -113,3 +113,8 @@ MonoBehaviour:
   Selected: 0
   MaterialSelected: {fileID: 2100000, guid: e939052c5a5f5d94e873af632df04a34, type: 2}
   MaterialNotSelected: {fileID: 2100000, guid: 3ee6d4dc52c93d14e97c35ee99cbe6ca, type: 2}
+  cardTitle: {fileID: 0}
+  cardDesc: {fileID: 0}
+  cardHealth: {fileID: 0}
+  cardAttack: {fileID: 0}
+  cardCost: {fileID: 0}

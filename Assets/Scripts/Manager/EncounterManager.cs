@@ -51,7 +51,6 @@ public class EncounterManager : MonoBehaviour
         zoomCamera = false;
         combatZone.SetActive(true);
         camera.gameObject.SetActive(false);
-        //INIT COMBAT
     }
 
     private void Update()
