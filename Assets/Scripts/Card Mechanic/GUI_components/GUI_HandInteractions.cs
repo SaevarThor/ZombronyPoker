@@ -54,12 +54,12 @@ public class GUI_HandInteractions : MonoBehaviour {
             cardOnHand.Remove(card);
     }
     
-    private void spaceCards(){
+    public void spaceCards(){
         float spacing = 0.125f;
         float offset = 0;
         foreach (Transform trans in cardOnHand){
             trans.position = this.transform.position;
-            Vector3 newPos = new Vector3(trans.position.x + offset, this.transform.position.y, this.transform.position.z);
+            Vector3 newPos = new Vector3(trans.position.x + offset, this.transform.position.y, this.transform.position.z );
             trans.position = newPos;
             offset += spacing;
         }

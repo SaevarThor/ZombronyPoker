@@ -58,8 +58,10 @@ public class DeckController : MonoBehaviour {
         }
 
         //generate an entire deck of cards for the opponent
-        public List<Card> generateOpponentDeck (int size, int strength = 1){
-
+        public List<Card> generateOpponentDeck (int size, int strength = 1)
+        {
+            BoardController.Instance.CardsLeftOpponent = size;
+            
             List<Card> deck = new List<Card>();
             for (int i = 0; i < size; i++)
             {

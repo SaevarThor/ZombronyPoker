@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,12 +11,15 @@ public class EncounterManager : MonoBehaviour
     [SerializeField] private GameObject combatZone;
     private float combatInitTimer = 3;
     private float dropHeight = 40;
+    private GameObject activeZone;
 
     private Zombie fightingZombie;
     private Table fightingTable;
     private Vector3 attackPosition;
     private bool zoomCamera;
 
+    private Transform orignalCamerTransform;
+    
     public ItemPanel ItemVisual;
 
     private void Awake()
@@ -24,6 +28,11 @@ public class EncounterManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
+    }
+
+    private void Start()
+    {
+        orignalCamerTransform = camera.transform;
     }
 
     public void RequestCombat(Vector3 playerPos, Vector3 zombiePos, Zombie zombie)
@@ -38,6 +47,8 @@ public class EncounterManager : MonoBehaviour
         fightingTable = g.GetComponent<Table>(); 
         Player.Instance.SetMovement(false);
 
+        fightingZombie = zombie;
+
         StartCoroutine(StartCombat());
     }
 
@@ -49,7 +60,8 @@ public class EncounterManager : MonoBehaviour
         zoomCamera = true;
         yield return new WaitForSeconds(5);
         zoomCamera = false;
-        combatZone.SetActive(true);
+        //combatZone.SetActive(true);
+        activeZone = Instantiate(combatZone);
         camera.gameObject.SetActive(false);
     }
 
@@ -65,7 +77,11 @@ public class EncounterManager : MonoBehaviour
 
     public void EndCombat(bool win)
     {
+        Destroy(activeZone);
         camera.gameObject.SetActive(true);
+        camera.orthographicSize = 15;
+        camera.transform.rotation = orignalCamerTransform.rotation;
+
         if (win)
         {
             //Kill off zombie and players. 

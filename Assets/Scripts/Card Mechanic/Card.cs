@@ -85,13 +85,12 @@ public class Card {
     }
 
     public int Attack(Card targetCard){
-        if (state == CardState.OnBoard && !HasAttackedThisRound){
+        if (state == CardState.OnBoard){
             Debug.Log(string.Format("{0} attacked {1} for {2} damage",CardName, targetCard.CardName, Damage));
             //deal damage to the card and receive damage in return
             targetCard.TakeDamage(Damage);
-            TakeDamage(targetCard.Damage);
-            // send a signal    
-            HasAttackedThisRound = true;
+            //TakeDamage(targetCard.Damage);
+            // send a signal   
             return 0;
         }
         //send a signal
@@ -110,6 +109,11 @@ public class Card {
                 //Debug.Log(string.Format("{0} took terminal damage", CardName));
                 setCardState(CardState.Destroyed);
                 BoardController.Instance.DecrementCardsLeft(faction);
+                if (DeckController.Instance.PlayerDeck.Contains(this))
+                {
+                    DeckController.Instance.PlayerDeck.Remove(this);
+                    DeckController.Instance.PlayerCardPool.Remove(this);
+                }
                 //send a signal
                 if (OnCardDestroyed != null)
                     OnCardDestroyed();

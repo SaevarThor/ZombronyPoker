@@ -58,22 +58,9 @@ public class GUI_CardBattle : MonoBehaviour
                         deSelectCard();
                     } 
                     // Interact with player PlayArea
-                    else if (hit.transform.CompareTag("PlayerPlayArea"))
-                    {
-                       /* Debug.Log(selectedCard);
-                        if (selectedCard != null){
-                            GUI_PlayArea playArea = hit.transform.GetComponent<GUI_PlayArea>();
-                            // Place a card in the play area
-                            if (playArea != null){
-                                playArea.PlaceInPlayArea(selectedCard.transform);
-                                handInteraction.RemoveFromHand(selectedCard.transform); 
-                                deSelectCard();
-                            }
-                        }*/
-                       
-                       if (selectedCard == null) return;
-                       
-                       hit.transform.GetComponent<IClickable>().Click(selectedCard);
+                    else if (hit.transform.CompareTag("PlayerPlayArea")&& selectedCard != null && selectedCard.thisCard.state == CardState.OnHand)
+                    { 
+                        hit.transform.GetComponent<IClickable>().Click(selectedCard);
                        handInteraction.RemoveFromHand(selectedCard.transform);
                        deSelectCard();
                        

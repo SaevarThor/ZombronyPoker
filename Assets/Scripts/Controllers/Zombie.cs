@@ -89,6 +89,7 @@ public class Zombie : MonoBehaviour
     public void Die()
     {
         //Play anim and die
+        Destroy(this.gameObject);
     }
 
     public void Celebrate()

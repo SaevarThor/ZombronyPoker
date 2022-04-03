@@ -31,6 +31,8 @@ public class GUI_EnemyController : MonoBehaviour {
             g.transform.tag = "OpponentCard";
             allCards.Add(g);
         }
+
+        GUIHand.spaceCards();
         
         BoardController.Instance.Enemy = this;
     }
@@ -39,7 +41,6 @@ public class GUI_EnemyController : MonoBehaviour {
     {
         if (isDoing) return;
         isDoing = true;
-        Debug.Log("Setting Enemy Turn");
         float thinkTimer = Random.Range(1, 3);
         //Set zombie state to thinking
 
@@ -96,25 +97,8 @@ public class GUI_EnemyController : MonoBehaviour {
 
         List<Card> tempList = myCardsOnBoard.Where(c => c.state == CardState.OnBoard).ToList();
         myCardsOnBoard = tempList;
-        
-        /*myCardsOnBoard.Clear();
-        foreach(Card card in DeckController.Instance.OpponentDeck)
-        {
-            if (card.state == CardState.OnBoard)
-            {
-                myCardsOnBoard.Add(card);
-            }
-        }
 
-
-        /*myCardsInHand.Clear();
-        foreach(Card card in DeckController.Instance.OpponentDeck){
-            if (card.state == CardState.OnHand){
-                myCardsInHand.Add(card);
-            }
-        }*/
-
-       List<GameObject> allCardsNew = new List<GameObject>();
+        List<GameObject> allCardsNew = new List<GameObject>();
         foreach (GameObject card in allCards){
             if (card != null)
             {
@@ -126,12 +110,11 @@ public class GUI_EnemyController : MonoBehaviour {
 
     private bool ShouldAttack(int emptySlots)
     {
+        if (myCardsInHand.Count == 0 || emptySlots == 0) return true;
+        
         if (emptySlots == 3) return false;
-
-        if (emptySlots == 0) return true;
-
-        int random = Random.Range(1, 4);
-
+        
+        int random = Random.Range(1, 5);
         return random > emptySlots;
     }
 

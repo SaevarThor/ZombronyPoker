@@ -56,19 +56,8 @@ public class BoardController : MonoBehaviour {
 
     private void Start() {
         playerDeck = deckController.PlayerDeck;
+        cardsLeft = playerDeck.Count;
         opponentDeck = deckController.OpponentDeck;
-
-        foreach (Card card in playerDeck){
-            if (card.state == CardState.InDeck){
-                cardsLeft ++;
-            }
-        }
-        foreach (Card card in opponentDeck){
-            if (card.state == CardState.InDeck){
-                CardsLeftOpponent ++;
-            }
-        }
-
         resourcepool = 100;
     }
 
@@ -152,7 +141,7 @@ public class BoardController : MonoBehaviour {
 
     // The attack happens in the firs IF statement I keep forgeting 
     public void Attack(Card attacker, Card target){
-
+        Debug.Log($"ATTACKING attacker {attacker.CardName}, {target.CardName} and hasplayedcard = {hasPlayedCard}");
         //we can only attack or play a card to the table
         if (!hasPlayedCard){
             if (attacker.Attack(target) != -1){
@@ -203,9 +192,22 @@ public class BoardController : MonoBehaviour {
     public void DecrementCardsLeft(CardFaction faction){
         if (faction == CardFaction.player){
             cardsLeft--;
+            if (cardsLeft <= 0)
+            {
+                //Lose
+                Debug.Log("LOSE");
+                EncounterManager.Instance.EndCombat(false);
+            }
         }
         else{
             CardsLeftOpponent --;
+
+            if (CardsLeftOpponent <= 0)
+            {
+                //Win
+                Debug.Log("WIN");
+                EncounterManager.Instance.EndCombat(true);
+            }
         }
     }
 

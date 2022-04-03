@@ -19,7 +19,7 @@ public class GUI_CardInteraction : MonoBehaviour {
     
         cardTitle.text = thisCard.CardName;
         cardDesc.text = thisCard.Description;
-        cardHealth.text = thisCard.Health.ToString();
+        cardHealth.text = thisCard.CurrentHealth.ToString();
         cardAttack.text = thisCard.Damage.ToString();
         //cardCost.text = thisCard.Cost.ToString();
         
@@ -53,7 +53,7 @@ public class GUI_CardInteraction : MonoBehaviour {
         Debug.Log("update card info");
         cardTitle.text = thisCard.CardName;
         cardDesc.text = thisCard.Description;
-        cardHealth.text = thisCard.Health.ToString();
+        cardHealth.text = thisCard.CurrentHealth.ToString();
         cardAttack.text = thisCard.Damage.ToString();
     }
 }
