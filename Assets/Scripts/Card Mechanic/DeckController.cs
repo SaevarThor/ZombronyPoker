@@ -10,8 +10,8 @@ public class DeckController : MonoBehaviour {
         public List<Card> PlayerCardPool = new List<Card>();
         public List<Card> OpponentCardPool = new List<Card>();
 
-        private string[] firstNames = {"Larry", "Davis"};
-        private string[] lastNames = {"Williams", "Paulson"};
+        private string[] firstNames = {"Larry", "Davis", "Sævar", "Matias", "Ace", "Harald", "Gunther", "Heimdall", "Horson"};
+        private string[] lastNames = {"Williams", "Paulson", "Sveinson", "Bye", "Boa", "Hundall", "California"};
         private string[] flair = {"Of the flesh", "The destroyer", "The cuckholded"};
 
         private int deckLimit = 20;
@@ -22,12 +22,20 @@ public class DeckController : MonoBehaviour {
             } else {
                 Instance = this;
             }
+
+            PlayerCardPool = generateCardPool(10);
+            OpponentCardPool  = generateOpponentPool(10);
+
+            //For debug reasons we build a random deck 
+            foreach (Card card in PlayerCardPool){
+                AddCardToDeck(card);
+            }
+            foreach (Card card in OpponentCardPool){
+                AddCardToDeck(card);
+            }
         }
 
         private void Start() {
-            PlayerCardPool = generateCardPool(10);
-            OpponentCardPool  = generateCardPool(10);
-            buildOpponentDeck();
         }
 
         public int AddCardToDeck (Card card){
@@ -48,24 +56,35 @@ public class DeckController : MonoBehaviour {
         }
 
         // intitialize the opponents deck
-        private void buildOpponentDeck() {
-                    
+        private List<Card> generateOpponentPool(int poolSize) {
+
+            List<Card> pool = new List<Card>();
+            int cardsLeft = poolSize;
+            int id = 0;
+            while (cardsLeft > 0){
+                pool.Add(generateEnemyCard(id));
+                cardsLeft --;
+                id++; 
+            }
+
+            return pool;
         }
 
         private List<Card> generateCardPool (int poolSize){
             
             List<Card> pool = new List<Card>();
             int cardsLeft = poolSize;
-
+            int id = 0;
             while(cardsLeft > 0){
-               pool.Add(generateCard());
+               pool.Add(generateCard(id));
                cardsLeft --;
+               id ++;
             }
 
             return pool;
         }
         // generate random player cards
-        private Card generateCard(){
+        private Card generateCard(int id){
             //Generate a random name for the card
             string name = string.Format("{0} {1} {2}", 
             firstNames[Random.Range(0,firstNames.Length)],
@@ -73,7 +92,20 @@ public class DeckController : MonoBehaviour {
             flair[Random.Range(0,flair.Length)]);
 
             // Create a new card with random stats 
-            return new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardGender.man, CardFaction.player, CardType.Companion);
+            return new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardGender.man, CardFaction.player);
             
+        }
+
+        private Card generateEnemyCard(int id){
+            //Generate a random name for the card
+            string name = string.Format("{0} {1} {2}", 
+            firstNames[Random.Range(0,firstNames.Length)],
+            lastNames[Random.Range(0,lastNames.Length)],
+            flair[Random.Range(0,flair.Length)]);
+
+            // Create a new card with random stats 
+            
+            Card gen = new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardGender.man, CardFaction.Enemy);
+            return gen; 
         }
 }

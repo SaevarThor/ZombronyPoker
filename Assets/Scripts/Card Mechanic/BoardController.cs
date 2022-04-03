@@ -3,21 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class BoardController : MonoBehaviour {
+
+    //Delegates
+    public delegate void OnTurnEndDelegate();
+    public OnTurnEndDelegate OnTurnEnd;
+
     public static BoardController Instance;
     public int resourcepool;
-    
+    public bool ActiveBattle = false;
+    public bool PlayerTurn = false;
+    public bool OpponentTurn = false;
+    public Card LastDrawnCard;
+    public Card LastPlayedCard;
+
     private DeckController deckController => DeckController.Instance;
 
     private List<Card> opponentDeck;
     private List<Card> playerDeck;
 
-    private int turn;
-    private int cardsLeft = 0;
+    public int turn;
+    public int cardsLeft = 0;
     
     // required turn action flags
-    private bool playerHasAttacked = false;
-    private bool opponentHasAttacked = false;
-    private bool cleanupDone = false;
+    public bool playerHasAttacked = false;
+    public bool opponentHasAttacked = false;
+    public bool cleanupDone = false;
 
     private void Awake() {
             if (Instance != null && Instance != this){
@@ -32,29 +42,32 @@ public class BoardController : MonoBehaviour {
         opponentDeck = deckController.OpponentDeck;
 
         foreach (Card card in playerDeck){
-            if (card.state == CardState.InDeck)
+            if (card.state == CardState.InDeck){
                 cardsLeft ++;
+            }
         }
 
         resourcepool = 100;
     }
 
     private void Update() {
-        if (playerHasAttacked && opponentHasAttacked && cleanupDone){
+        
+        if (playerHasAttacked){
+            playerHasAttacked = false;
+            endTurn(CardFaction.player);
+        }
+        if (!PlayerTurn && !OpponentTurn && !cleanupDone){
+            cleanupDone = true;
+        } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
             turn ++;
             // send some signal to the gui
+            OnTurnEnd();
+
             playerHasAttacked = false;
             opponentHasAttacked = false;
             cleanupDone = false;
-        }else if (playerHasAttacked && opponentHasAttacked && !cleanupDone) {
-            // do cleanup, remove destroyed cards and such
-            cleanupDone = true;
-        } else if (playerHasAttacked && !opponentHasAttacked) {
-            // pick a random card and attack for now, probably make it smarter in the future
-            // send signal 
-        } else if (!playerHasAttacked) {
-            // wait for the player to make an attack
-            // send signal 
+            PlayerTurn = true;
+            OpponentTurn = false;
         }
     }
 
@@ -63,7 +76,10 @@ public class BoardController : MonoBehaviour {
     public Card DrawCard(CardFaction faction){
         if (faction == CardFaction.player){
             foreach (Card card in playerDeck){
-                if (card.state == CardState.InDeck){
+                if (card.state == CardState.InDeck && cardsLeft > 0){
+                    cardsLeft --;
+                    LastDrawnCard = card;
+                    card.setCardState(CardState.OnHand);
                     return card;
                 }
             }
@@ -71,6 +87,8 @@ public class BoardController : MonoBehaviour {
         } else {
             foreach (Card card in opponentDeck){
                 if (card.state == CardState.InDeck){
+                    LastDrawnCard = card;
+                    card.setCardState(CardState.OnHand);
                     return card;
                 }
             }
@@ -87,6 +105,7 @@ public class BoardController : MonoBehaviour {
         if (attacker.Attack(target) != -1){
             if (attacker.faction == CardFaction.player){
                 //send signal to gui
+                endTurn(CardFaction.player);
             } else {
                 //send signal to gui    
             }
@@ -95,16 +114,28 @@ public class BoardController : MonoBehaviour {
     
     // gives a card the OnBoard status
     public int PlayCard(Card card){
-        // cost check
-        if (resourcepool < card.Cost){
+        // cost check for the player
+        if (card.faction != CardFaction.Enemy && resourcepool < card.Cost){
             // Send signal
             return -1;
         }
+
         // set the card state
         card.setCardState(CardState.OnBoard);
+        LastPlayedCard = card;
 
         // Send signal
         return 0;
+    }
+
+    public void endTurn(CardFaction faction){
+        if (faction == CardFaction.player){
+            PlayerTurn = false;
+            OpponentTurn = true;
+        } else{
+            Debug.Log("opponent ended turn");
+            OpponentTurn = false;
+        }
     }
 
 }

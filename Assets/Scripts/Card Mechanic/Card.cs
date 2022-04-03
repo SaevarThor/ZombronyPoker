@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public enum CardState : int {
     InPool = 0,
@@ -24,7 +25,7 @@ public enum CardGender : int {
 }
 
 public class Card {
-    public int CardId;
+    public string CardId;
     public string CardName;
     public string Description;
     public int Health;
@@ -37,24 +38,37 @@ public class Card {
 
     public int CurrentHealth;
 
+    //Events
+    public delegate void OnCardDestroyedDelegate();
+    public OnCardDestroyedDelegate OnCardDestroyed;
+    public delegate void OnCardWasPlayedDelegate();
+    public OnCardWasPlayedDelegate OnCardWasPlayed;
+    
     public Card(string _cardName, 
     string _description, 
     int _health, 
     int _damage, 
-    CardGender gender, 
-    CardFaction _faction = CardFaction.player, 
-    CardType _type = CardType.Companion){
+    CardGender _gender, 
+    CardFaction _faction, 
+    CardType _type = CardType.Companion
+    ){
         CardName = _cardName;
         Description = _description;
         Health = _health;
         Damage = _damage;
         state = CardState.InPool;
+        gender = _gender;
+        faction = _faction;
+        type = _type;
         CurrentHealth = Health;
+        CardId = Guid.NewGuid().ToString();
         calculateCost();
+        
     }
 
     public void setCardState(CardState _state){
         state = _state;
+        //Debug.Log(string.Format("{0} The state of {1} is now {2}", CardId, CardName, state));
     }
     // Give the card a cost based on its attributes
     private void calculateCost(){
@@ -63,6 +77,7 @@ public class Card {
 
     public int Attack(Card targetCard){
         if (state == CardState.OnBoard){
+            Debug.Log(string.Format("{0} attacked {1} for {2} damage",CardName, targetCard.CardName, Damage));
             targetCard.TakeDamage(Damage);
             // send a signal
             return 0;
@@ -74,10 +89,18 @@ public class Card {
     public int TakeDamage(int damage){
         if (state == CardState.OnBoard) {
             CurrentHealth -= damage;
+            if (CurrentHealth <= 0){
+                Debug.Log(string.Format("{0} took terminal damage", CardName));
+                setCardState(CardState.Destroyed);
+
+                //send a signal
+                OnCardDestroyed();
+            }
             // send a signal
             return 0;
         }
         // send a signal
         return -1;
     }
+
 }
