@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum GUI_Orientation : int{
@@ -55,9 +56,9 @@ public class GUI_CardBattle : MonoBehaviour
                         deSelectCard();
                     } 
                     // Interact with player PlayArea
-                    else if (hit.transform.CompareTag("PlayerPlayArea")){
-
-                        Debug.Log(selectedCard);
+                    else if (hit.transform.CompareTag("PlayerPlayArea"))
+                    {
+                       /* Debug.Log(selectedCard);
                         if (selectedCard != null){
                             GUI_PlayArea playArea = hit.transform.GetComponent<GUI_PlayArea>();
                             // Place a card in the play area
@@ -66,7 +67,13 @@ public class GUI_CardBattle : MonoBehaviour
                                 handInteraction.RemoveFromHand(selectedCard.transform); 
                                 deSelectCard();
                             }
-                        }
+                        }*/
+                       
+                       if (selectedCard == null) return;
+                       hit.transform.GetComponent<IClickable>().Click(selectedCard.thisCard);
+                       handInteraction.RemoveFromHand(selectedCard.transform);
+                       deSelectCard();
+                       
                     } 
                     // Interaction with opponent playArea
                     else if (hit.transform.CompareTag("OpponentPlayArea")) {

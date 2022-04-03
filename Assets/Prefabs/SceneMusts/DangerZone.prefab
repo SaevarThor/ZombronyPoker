@@ -257,7 +257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5082343572265621548
 Transform:
   m_ObjectHideFlags: 0
@@ -704,6 +704,8 @@ MonoBehaviour:
   playerHasAttacked: 0
   opponentHasAttacked: 0
   cleanupDone: 0
+  hasDrawnCard: 0
+  hasPlayedCard: 0
 --- !u!114 &5082343572737017280
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,31 +5,21 @@ using UnityEngine;
 public class GUI_PlayArea : MonoBehaviour
 {
 
-    private List<Transform> cardInPlayArea = new List<Transform>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    private List<Transform> cardInPlayArea;
+    
     private void OnDisable() {
         CleanPlayArea();
         //clean up listeners
-        foreach (Transform card in cardInPlayArea) {
+        foreach (Transform card in cardInPlayArea) 
+        {
             card.GetComponent<GUI_CardInteraction>().thisCard.OnCardDestroyed -= CleanPlayArea;
         }
     }
 
     public void PlaceInPlayArea(Transform card){
 
-        if (card.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnHand){
-
+        if (card.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnHand)
+        {
             Card cardData = card.GetComponent<GUI_CardInteraction>().thisCard;
             GUI_CardInteraction cardGUI = card.GetComponent<GUI_CardInteraction>();
             cardInPlayArea.Add(card);
@@ -38,9 +28,9 @@ public class GUI_PlayArea : MonoBehaviour
             // This link should be removed when the play area disables
             cardData.OnCardDestroyed += CleanPlayArea;
             cardData.setCardState(CardState.OnBoard);
-
         }
-        else {
+        else 
+        {
             Debug.Log(string.Format("Placing failed for {0}", card.GetComponent<GUI_CardInteraction>().thisCard.CardName));
         }
     }
@@ -60,12 +50,12 @@ public class GUI_PlayArea : MonoBehaviour
     }
 
     private void spaceCards(){
-        float spacing = 1.25f;
+        float spacing = 0.15f;
         float offset = 0;
         foreach (Transform trans in cardInPlayArea){
             trans.position = this.transform.position;
             trans.rotation = this.transform.rotation;
-            Vector3 newPos = new Vector3(trans.position.x -3.5f + offset, this.transform.position.y, this.transform.position.z);
+            Vector3 newPos = new Vector3(trans.position.x, this.transform.position.y, this.transform.position.z + offset);
             trans.position = newPos;
             offset += spacing;
         }

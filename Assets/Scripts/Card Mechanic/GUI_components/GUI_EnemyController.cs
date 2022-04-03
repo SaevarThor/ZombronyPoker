@@ -64,14 +64,18 @@ public class GUI_EnemyController : MonoBehaviour {
     private void updateState(){
         playerCardOnBoard.Clear();
         foreach(Card card in DeckController.Instance.PlayerDeck){
-            if (card.state == CardState.OnBoard){
+            
+            if (card.state == CardState.OnBoard)
+            {
                 playerCardOnBoard.Add(card);
             }
         }
 
         myCardsOnBoard.Clear();
-        foreach(Card card in DeckController.Instance.OpponentDeck){
-            if (card.state == CardState.OnBoard){
+        foreach(Card card in DeckController.Instance.OpponentDeck)
+        {
+            if (card.state == CardState.OnBoard)
+            {
                 myCardsOnBoard.Add(card);
             }
         }
@@ -86,7 +90,8 @@ public class GUI_EnemyController : MonoBehaviour {
 
        List<GameObject> allCardsNew = new List<GameObject>();
         foreach (GameObject card in allCards){
-            if (card != null){
+            if (card != null)
+            {
                 allCardsNew.Add(card);
             }
         }
@@ -97,7 +102,8 @@ public class GUI_EnemyController : MonoBehaviour {
 
     }
     // Animate the drawing of a card
-    private void drawCard(){
+    private void drawCard()
+    {
         Debug.Log("drawing card");
         Card Drawn = BoardController.Instance.DrawCard(CardFaction.Enemy);
         if (Drawn != null){
