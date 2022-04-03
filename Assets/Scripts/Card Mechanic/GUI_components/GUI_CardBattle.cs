@@ -32,6 +32,7 @@ public class GUI_CardBattle : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask)){
+                    Debug.Log(hit.transform.name);
                     // selection of card
                     if (selectedCard != null && hit.transform.CompareTag("OpponentCard")){
                         //attack the enemy card
@@ -53,6 +54,8 @@ public class GUI_CardBattle : MonoBehaviour
                     } 
                     // Interact with player PlayArea
                     else if (hit.transform.CompareTag("PlayerPlayArea")){
+
+                        Debug.Log(selectedCard);
                         if (selectedCard != null){
                             GUI_PlayArea playArea = hit.transform.GetComponent<GUI_PlayArea>();
                             // Place a card in the play area

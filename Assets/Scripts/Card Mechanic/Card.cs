@@ -92,7 +92,7 @@ public class Card {
             if (CurrentHealth <= 0){
                 Debug.Log(string.Format("{0} took terminal damage", CardName));
                 setCardState(CardState.Destroyed);
-
+                BoardController.Instance.DecrementCardsLeft(faction);
                 //send a signal
                 OnCardDestroyed();
             }
