@@ -542,7 +542,7 @@ PrefabInstance:
     - target: {fileID: 1901550127, guid: 768c95a86daa1824585c097f93daf657, type: 3}
       propertyPath: camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6967956582406435990}
     - target: {fileID: 1901550128, guid: 768c95a86daa1824585c097f93daf657, type: 3}
       propertyPath: text
       value: 
@@ -622,7 +622,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerCamera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6967956582406435990}
     - target: {fileID: 6458381449003119859, guid: 768c95a86daa1824585c097f93daf657,
         type: 3}
       propertyPath: m_Name
@@ -699,3 +699,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c91b7c64eb095478169e77599b3b1b, type: 3}
+--- !u!20 &6967956582406435990 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 6239937227183743048, guid: e9c91b7c64eb095478169e77599b3b1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6967956582406435989}
+  m_PrefabAsset: {fileID: 0}
