@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class DeckController : MonoBehaviour {
         public static DeckController Instance;
@@ -12,9 +13,9 @@ public class DeckController : MonoBehaviour {
 
         private string[] firstNames = {"Larry", "Davis", "Sævar", "Matias", "Ace", "Harald", "Gunther", "Heimdall", "Horson"};
         private string[] lastNames = {"Williams", "Paulson", "Sveinson", "Bye", "Boa", "Hundall", "California"};
-        private string[] flair = {"Of the flesh", "The destroyer", "The cuckholded"};
+        private string[] flair = {"Of the flesh", "The destroyer", "The cuckholded", "The sickly", "Of the valley", "Certified badass", "Of many moons", "Of the twin sun"};
 
-        private int deckLimit = 4;
+        private int deckLimit = 5;
 
         private void Awake() {
             if (Instance != null && Instance != this){
@@ -23,10 +24,11 @@ public class DeckController : MonoBehaviour {
                 Instance = this;
             }
 
-            PlayerCardPool = generateCardPool(5);
-            OpponentCardPool  = generateOpponentPool(5);
+            PlayerCardPool = generateCardPool(deckLimit);
+            OpponentCardPool  = generateOpponentPool(deckLimit);
 
             //For debug reasons we build a random deck 
+
             foreach (Card card in PlayerCardPool){
                 AddCardToDeck(card);
             }
@@ -43,10 +45,10 @@ public class DeckController : MonoBehaviour {
                 // Add card to deck based on faction
                 if (card.faction == CardFaction.player) {
                     PlayerDeck.Add(card);
-                    card.setCardState(CardState.InDeck);
+                    card.setCardState(CardState.OnHand);
                 } else{
                     OpponentDeck.Add(card);
-                    card.setCardState(CardState.InDeck);
+                    card.setCardState(CardState.OnHand);
                 }
                 return 0;
             } else {
