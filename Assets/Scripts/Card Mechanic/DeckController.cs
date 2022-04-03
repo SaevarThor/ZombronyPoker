@@ -57,6 +57,20 @@ public class DeckController : MonoBehaviour {
             }
         }
 
+        //generate an entire deck of cards for the opponent
+        public List<Card> generateOpponentDeck (int size, int strength = 1){
+
+            List<Card> deck = new List<Card>();
+            for (int i = 0; i < size; i++)
+            {
+                Card card = generateEnemyCard();
+                card.state = CardState.InDeck;
+                deck.Add(card);
+            }
+
+            return deck;
+        }
+
         // intitialize the opponents deck
         private List<Card> generateOpponentPool(int poolSize) {
 
@@ -64,7 +78,7 @@ public class DeckController : MonoBehaviour {
             int cardsLeft = poolSize;
             int id = 0;
             while (cardsLeft > 0){
-                pool.Add(generateEnemyCard(id));
+                pool.Add(generateEnemyCard());
                 cardsLeft --;
                 id++; 
             }
@@ -76,17 +90,15 @@ public class DeckController : MonoBehaviour {
             
             List<Card> pool = new List<Card>();
             int cardsLeft = poolSize;
-            int id = 0;
             while(cardsLeft > 0){
-               pool.Add(generateCard(id));
+               pool.Add(generateCard());
                cardsLeft --;
-               id ++;
             }
 
             return pool;
         }
         // generate random player cards
-        private Card generateCard(int id){
+        private Card generateCard(){
             //Generate a random name for the card
             string name = string.Format("{0} {1} {2}", 
             firstNames[Random.Range(0,firstNames.Length)],
@@ -98,7 +110,7 @@ public class DeckController : MonoBehaviour {
             
         }
 
-        private Card generateEnemyCard(int id){
+        private Card generateEnemyCard(){
             //Generate a random name for the card
             string name = string.Format("{0} {1} {2}", 
             firstNames[Random.Range(0,firstNames.Length)],
