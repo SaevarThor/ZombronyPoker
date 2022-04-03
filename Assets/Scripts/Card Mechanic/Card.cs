@@ -22,9 +22,12 @@ public enum CardType : int {
 public enum CardGender : int {
     man = 0,
     woman = 1,
+    child = 2,
 }
 
 public class Card {
+
+    // Attriutes
     public string CardId;
     public string CardName;
     public string Description;
@@ -37,13 +40,18 @@ public class Card {
     public CardGender gender;
 
     public int CurrentHealth;
+    public bool HasAttackedThisRound;
 
     //Events
     public delegate void OnCardDestroyedDelegate();
     public OnCardDestroyedDelegate OnCardDestroyed;
     public delegate void OnCardWasPlayedDelegate();
     public OnCardWasPlayedDelegate OnCardWasPlayed;
-    
+    public delegate void OnFailedAttackDelegate();
+    public OnFailedAttackDelegate OnFailedAttack;    
+    public delegate void OnCardTakeDamageDelegate();
+    public OnCardTakeDamageDelegate onCardTakeDamage;
+
     public Card(string _cardName, 
     string _description, 
     int _health, 
@@ -62,6 +70,7 @@ public class Card {
         type = _type;
         CurrentHealth = Health;
         CardId = Guid.NewGuid().ToString();
+        HasAttackedThisRound = false;
         calculateCost();
         
     }
@@ -76,13 +85,19 @@ public class Card {
     }
 
     public int Attack(Card targetCard){
-        if (state == CardState.OnBoard){
+        if (state == CardState.OnBoard && !HasAttackedThisRound){
             Debug.Log(string.Format("{0} attacked {1} for {2} damage",CardName, targetCard.CardName, Damage));
+            //deal damage to the card and receive damage in return
             targetCard.TakeDamage(Damage);
-            // send a signal
+            TakeDamage(targetCard.Damage);
+            // send a signal    
+            HasAttackedThisRound = true;
             return 0;
         }
         //send a signal
+        if (OnFailedAttack != null)
+            OnFailedAttack();
+
         return -1;
     }
 
@@ -90,17 +105,24 @@ public class Card {
         if (state == CardState.OnBoard) {
             CurrentHealth -= damage;
             if (CurrentHealth <= 0){
-                Debug.Log(string.Format("{0} took terminal damage", CardName));
+                //Debug.Log(string.Format("{0} took terminal damage", CardName));
                 setCardState(CardState.Destroyed);
                 BoardController.Instance.DecrementCardsLeft(faction);
                 //send a signal
-                OnCardDestroyed();
+                if (OnCardDestroyed != null)
+                    OnCardDestroyed();
+                return 0;
             }
             // send a signal
+            Debug.Log("send signal");
+            if (onCardTakeDamage != null)
+                onCardTakeDamage();
             return 0;
         }
         // send a signal
         return -1;
     }
-
+    public void resetState(){
+        HasAttackedThisRound = false;
+    }
 }
