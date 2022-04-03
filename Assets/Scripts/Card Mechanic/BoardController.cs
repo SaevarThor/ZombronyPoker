@@ -8,6 +8,12 @@ public class BoardController : MonoBehaviour {
     public delegate void OnTurnEndDelegate();
     public OnTurnEndDelegate OnTurnEnd;
 
+    public delegate void OnPlayerWinDelegate();
+    public OnPlayerWinDelegate OnPlayerWin;
+
+    public delegate void OnPlayerLossDelegate();
+    public OnPlayerLossDelegate OnPlayerLoss;
+
     public static BoardController Instance;
     public int resourcepool;
     public bool ActiveBattle = false;
@@ -23,6 +29,7 @@ public class BoardController : MonoBehaviour {
 
     public int turn;
     public int cardsLeft = 0;
+    public int CardsLeftOpponent = 0;
     
     // required turn action flags
     public bool playerHasAttacked = false;
@@ -46,28 +53,49 @@ public class BoardController : MonoBehaviour {
                 cardsLeft ++;
             }
         }
+        foreach (Card card in opponentDeck){
+            if (card.state == CardState.InDeck){
+                CardsLeftOpponent ++;
+            }
+        }
 
         resourcepool = 100;
     }
 
     private void Update() {
-        
-        if (playerHasAttacked){
-            playerHasAttacked = false;
-            endTurn(CardFaction.player);
-        }
-        if (!PlayerTurn && !OpponentTurn && !cleanupDone){
-            cleanupDone = true;
-        } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
-            turn ++;
-            // send some signal to the gui
-            OnTurnEnd();
 
-            playerHasAttacked = false;
-            opponentHasAttacked = false;
-            cleanupDone = false;
-            PlayerTurn = true;
-            OpponentTurn = false;
+        if (ActiveBattle) {
+            if (cardsLeft <= 0){
+                //player has lost
+                if (OnPlayerLoss != null)
+                    OnPlayerLoss();
+                cleanUp();
+                ActiveBattle = false;
+            }
+            if (CardsLeftOpponent <= 0){
+                //player has won
+                if (OnPlayerWin != null)
+                    OnPlayerWin();
+                cleanUp();
+                ActiveBattle = false;
+            }
+            if (playerHasAttacked){
+                playerHasAttacked = false;
+                endTurn(CardFaction.player);
+            }
+            if (!PlayerTurn && !OpponentTurn && !cleanupDone){
+                cleanupDone = true;
+            } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
+                turn ++;
+                // send some signal to the gui
+                OnTurnEnd();
+
+                playerHasAttacked = false;
+                opponentHasAttacked = false;
+                cleanupDone = false;
+                PlayerTurn = true;
+                OpponentTurn = false;
+            }
         }
     }
 
@@ -77,7 +105,6 @@ public class BoardController : MonoBehaviour {
         if (faction == CardFaction.player){
             foreach (Card card in playerDeck){
                 if (card.state == CardState.InDeck && cardsLeft > 0){
-                    cardsLeft --;
                     LastDrawnCard = card;
                     card.setCardState(CardState.OnHand);
                     return card;
@@ -138,4 +165,28 @@ public class BoardController : MonoBehaviour {
         }
     }
 
+    public void endPlayerTurn(){
+        endTurn(CardFaction.player);
+    }
+
+    public void DecrementCardsLeft(CardFaction faction){
+        if (faction == CardFaction.player){
+            cardsLeft--;
+        }
+        else{
+            CardsLeftOpponent --;
+        }
+    }
+
+    public void StartBattle(){
+        ActiveBattle = true;
+    }
+
+    private void cleanUp(){
+        foreach (Card card in playerDeck ){
+            if (card.state == CardState.Destroyed){
+                deckController.removeCardFromDeck(card);
+            }
+        }
+    }
 }

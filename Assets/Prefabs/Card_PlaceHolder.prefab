@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 354183681364451342}
   - component: {fileID: 354183681364451340}
   - component: {fileID: 354183681364451341}
-  m_Layer: 5
-  m_Name: Text (TMP)
+  m_Layer: 0
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,8 +146,8 @@ GameObject:
   - component: {fileID: 354183681770374847}
   - component: {fileID: 354183681770374845}
   - component: {fileID: 354183681770374846}
-  m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Layer: 0
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,9 +282,10 @@ GameObject:
   - component: {fileID: 354183681796670829}
   - component: {fileID: 354183681796670830}
   - component: {fileID: 354183681796670831}
-  m_Layer: 0
+  - component: {fileID: 804759765}
+  m_Layer: 6
   m_Name: Card_PlaceHolder
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -296,15 +297,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354183681796670824}
-  m_LocalRotation: {x: -0.28646109, y: -0.65934485, z: 0.27699482, w: 0.6375565}
-  m_LocalPosition: {x: 2.405557, y: 1.8535769, z: -0.5237177}
-  m_LocalScale: {x: 1, y: 0.058185, z: 0.48944998}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.3426081, y: 0.08298927, z: 1.9521183}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 354183682242185278}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -91.925, z: 46.966}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!33 &354183681796670829
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -368,6 +369,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &804759765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354183681796670824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 509f3563b45d62347afbac822dda9034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Selected: 0
+  MaterialSelected: {fileID: 2100000, guid: e939052c5a5f5d94e873af632df04a34, type: 2}
+  MaterialNotSelected: {fileID: 2100000, guid: 3ee6d4dc52c93d14e97c35ee99cbe6ca, type: 2}
+  cardTitle: {fileID: 354183681364451341}
+  cardDesc: {fileID: 354183682459106592}
+  cardHealth: {fileID: 354183681770374846}
+  cardAttack: {fileID: 354183681808521815}
+  cardCost: {fileID: 0}
 --- !u!1 &354183681808521809
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,8 +400,8 @@ GameObject:
   - component: {fileID: 354183681808521808}
   - component: {fileID: 354183681808521814}
   - component: {fileID: 354183681808521815}
-  m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Layer: 0
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +536,7 @@ GameObject:
   - component: {fileID: 354183682242185219}
   - component: {fileID: 354183682242185276}
   - component: {fileID: 354183682242185277}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: CardCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,8 +550,8 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354183682242185279}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.012}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0.017}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -541,10 +562,10 @@ RectTransform:
   - {fileID: 354183682949420277}
   m_Father: {fileID: 354183681796670828}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.01, y: 0.6}
+  m_AnchoredPosition: {x: -0.013, y: 0.6}
   m_SizeDelta: {x: 99.3568, y: 96.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &354183682242185219
@@ -619,8 +640,8 @@ GameObject:
   - component: {fileID: 354183682459106593}
   - component: {fileID: 354183682459106599}
   - component: {fileID: 354183682459106592}
-  m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Layer: 0
+  m_Name: Description
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,7 +776,7 @@ GameObject:
   - component: {fileID: 354183682949420277}
   - component: {fileID: 354183682949420283}
   - component: {fileID: 354183682949420276}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: tr
   m_TagString: Untagged
   m_Icon: {fileID: 0}

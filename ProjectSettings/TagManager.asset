@@ -7,6 +7,9 @@ TagManager:
   - Card
   - PlayerPlayArea
   - OpponentPlayArea
+  - Undefined
+  - OpponentCard
+  - PlayArea
   layers:
   - Default
   - TransparentFX

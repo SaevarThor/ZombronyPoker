@@ -14,7 +14,7 @@ public class DeckController : MonoBehaviour {
         private string[] lastNames = {"Williams", "Paulson", "Sveinson", "Bye", "Boa", "Hundall", "California"};
         private string[] flair = {"Of the flesh", "The destroyer", "The cuckholded"};
 
-        private int deckLimit = 20;
+        private int deckLimit = 4;
 
         private void Awake() {
             if (Instance != null && Instance != this){
@@ -23,8 +23,8 @@ public class DeckController : MonoBehaviour {
                 Instance = this;
             }
 
-            PlayerCardPool = generateCardPool(10);
-            OpponentCardPool  = generateOpponentPool(10);
+            PlayerCardPool = generateCardPool(5);
+            OpponentCardPool  = generateOpponentPool(5);
 
             //For debug reasons we build a random deck 
             foreach (Card card in PlayerCardPool){
@@ -105,7 +105,17 @@ public class DeckController : MonoBehaviour {
 
             // Create a new card with random stats 
             
-            Card gen = new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),CardGender.man, CardFaction.Enemy);
+            Card gen = new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,4),CardGender.man, CardFaction.Enemy);
             return gen; 
         }
+    
+    public void removeCardFromPool(Card card){
+        if (PlayerCardPool.Contains(card))
+            PlayerCardPool.Remove(card);
+    }
+
+    public void removeCardFromDeck(Card card){
+        if (PlayerDeck.Contains(card))
+            PlayerDeck.Remove(card);
+    }
 }
