@@ -23,8 +23,8 @@ public class DeckController : MonoBehaviour {
                 Instance = this;
             }
 
-            PlayerCardPool = generateCardPool(10);
-            OpponentCardPool  = generateOpponentPool(10);
+            PlayerCardPool = generateCardPool(5);
+            OpponentCardPool  = generateOpponentPool(5);
 
             //For debug reasons we build a random deck 
             foreach (Card card in PlayerCardPool){
@@ -108,5 +108,14 @@ public class DeckController : MonoBehaviour {
             Card gen = new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,4),CardGender.man, CardFaction.Enemy);
             return gen; 
         }
+    
+    public void removeCardFromPool(Card card){
+        if (PlayerCardPool.Contains(card))
+            PlayerCardPool.Remove(card);
+    }
 
+    public void removeCardFromDeck(Card card){
+        if (PlayerDeck.Contains(card))
+            PlayerDeck.Remove(card);
+    }
 }

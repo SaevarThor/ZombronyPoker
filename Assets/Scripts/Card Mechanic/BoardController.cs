@@ -64,37 +64,39 @@ public class BoardController : MonoBehaviour {
 
     private void Update() {
 
-    if (ActiveBattle) {
-        if (cardsLeft <= 0){
-            //player has lost
-            if (OnPlayerLoss != null)
-                OnPlayerLoss();
-            ActiveBattle = false;
-        }
-        if (CardsLeftOpponent <= 0){
-            //player has won
-            if (OnPlayerWin != null)
-                OnPlayerWin();
-            ActiveBattle = false;
-        }
-        if (playerHasAttacked){
-            playerHasAttacked = false;
-            endTurn(CardFaction.player);
-        }
-        if (!PlayerTurn && !OpponentTurn && !cleanupDone){
-            cleanupDone = true;
-        } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
-            turn ++;
-            // send some signal to the gui
-            OnTurnEnd();
+        if (ActiveBattle) {
+            if (cardsLeft <= 0){
+                //player has lost
+                if (OnPlayerLoss != null)
+                    OnPlayerLoss();
+                cleanUp();
+                ActiveBattle = false;
+            }
+            if (CardsLeftOpponent <= 0){
+                //player has won
+                if (OnPlayerWin != null)
+                    OnPlayerWin();
+                cleanUp();
+                ActiveBattle = false;
+            }
+            if (playerHasAttacked){
+                playerHasAttacked = false;
+                endTurn(CardFaction.player);
+            }
+            if (!PlayerTurn && !OpponentTurn && !cleanupDone){
+                cleanupDone = true;
+            } else if (!PlayerTurn && !OpponentTurn && cleanupDone){
+                turn ++;
+                // send some signal to the gui
+                OnTurnEnd();
 
-            playerHasAttacked = false;
-            opponentHasAttacked = false;
-            cleanupDone = false;
-            PlayerTurn = true;
-            OpponentTurn = false;
+                playerHasAttacked = false;
+                opponentHasAttacked = false;
+                cleanupDone = false;
+                PlayerTurn = true;
+                OpponentTurn = false;
+            }
         }
-       }
     }
 
     // Actions
@@ -173,6 +175,18 @@ public class BoardController : MonoBehaviour {
         }
         else{
             CardsLeftOpponent --;
+        }
+    }
+
+    public void StartBattle(){
+        ActiveBattle = true;
+    }
+
+    private void cleanUp(){
+        foreach (Card card in playerDeck ){
+            if (card.state == CardState.Destroyed){
+                deckController.removeCardFromDeck(card);
+            }
         }
     }
 }
