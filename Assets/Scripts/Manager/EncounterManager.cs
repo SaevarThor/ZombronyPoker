@@ -81,6 +81,7 @@ public class EncounterManager : MonoBehaviour
         camera.gameObject.SetActive(true);
         camera.orthographicSize = 15;
         camera.transform.rotation = orignalCamerTransform.rotation;
+        camera.transform.position = orignalCamerTransform.position;
 
         if (win)
         {
@@ -93,6 +94,7 @@ public class EncounterManager : MonoBehaviour
             fightingZombie.Celebrate();
             //Kill Players
             //End game
+            SceneLoadingManager.LoadNewScene("MainMenu");
         }
     }
 

@@ -34,6 +34,7 @@ public class Card {
     public int Health;
     public int Damage;
     public int Cost;
+    public string CardPic;
     public CardState state; 
     public CardType type; 
     public CardFaction faction; 
