@@ -66,7 +66,6 @@ public class ItemPanel : MonoBehaviour
         Image.sprite = FightImage;
         
         
-        Instantiate(Enemy, )
     }
 
     private Vector3 GetEnemySpaw()
