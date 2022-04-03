@@ -113,26 +113,27 @@ public class BoardController : MonoBehaviour {
 
     // Actions
     // Draw a card into the hand, returns null if no cards are left or if player has already drawn a card this round.
-    public Card DrawCard(CardFaction faction){
+    public Card[] DrawCard(CardFaction faction){
+        List<Card> cards = new List<Card>();
         if (faction == CardFaction.player && !hasDrawnCard ){
             foreach (Card card in playerDeck){
                 if (card.state == CardState.InDeck && cardsLeft > 0){
                     LastDrawnCard = card;
                     card.setCardState(CardState.OnHand);
                     hasDrawnCard = true;
-                    return card;
+                    cards.Add(card);
                 }
             }
-            return null;
+            return cards.ToArray();
         } else if(faction == CardFaction.Enemy){
             foreach (Card card in opponentDeck){
                 if (card.state == CardState.InDeck){
                     LastDrawnCard = card;
                     card.setCardState(CardState.OnHand);
-                    return card;
+                    cards.Add(card);
                 }
             }
-            return null;
+            return cards.ToArray();
         } else {
             return null;
         }

@@ -45,10 +45,10 @@ public class DeckController : MonoBehaviour {
                 // Add card to deck based on faction
                 if (card.faction == CardFaction.player) {
                     PlayerDeck.Add(card);
-                    card.setCardState(CardState.OnHand);
+                    card.setCardState(CardState.InDeck);
                 } else{
                     OpponentDeck.Add(card);
-                    card.setCardState(CardState.OnHand);
+                    card.setCardState(CardState.InDeck);
                 }
                 return 0;
             } else {
