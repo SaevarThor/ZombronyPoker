@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6458381449003119857}
   - component: {fileID: 6458381449003119858}
-  - component: {fileID: 1551795409715581126}
   - component: {fileID: 1551795409715581145}
+  - component: {fileID: 7178492990494065261}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -47,21 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
---- !u!114 &1551795409715581126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6458381449003119859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d5517b6073200a4b824a8a89127536f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  table: {fileID: 6066694650499884661, guid: 72c4408d0c9cd5148a3fee7e7bf65341, type: 3}
-  camera: {fileID: 0}
-  ItemVisual: {fileID: 0}
 --- !u!114 &1551795409715581145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +64,18 @@ MonoBehaviour:
   text: {fileID: 0}
   acceptButton: {fileID: 0}
   declineButton: {fileID: 0}
+--- !u!114 &7178492990494065261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458381449003119859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12763990b115c04ebaeb8f9cc8254aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 0}
+  camera: {fileID: 0}
+  ItemVisual: {fileID: 0}

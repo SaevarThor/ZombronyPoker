@@ -4,6 +4,7 @@ public class GUI_DeckInteraction : MonoBehaviour {
     
     public GUI_HandInteractions GUIHand;
     public LayerMask LayerMask;
+    [SerializeField] private Camera fightCamera;
     
     private void Start() {
         
@@ -14,7 +15,7 @@ public class GUI_DeckInteraction : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)){
 
             //raycast after cards? 
-            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            Ray ray = fightCamera.ScreenPointToRay (Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask)){
                 Transform target = hit.transform;

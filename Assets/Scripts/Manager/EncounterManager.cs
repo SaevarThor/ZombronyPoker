@@ -7,6 +7,7 @@ public class EncounterManager : MonoBehaviour
     
     [SerializeField] private GameObject table;
     [SerializeField] private Camera camera;
+    [SerializeField] private GameObject combatZone;
     private float combatInitTimer = 3;
     private float dropHeight = 40;
 
@@ -48,6 +49,8 @@ public class EncounterManager : MonoBehaviour
         zoomCamera = true;
         yield return new WaitForSeconds(5);
         zoomCamera = false;
+        combatZone.SetActive(true);
+        camera.gameObject.SetActive(false);
         //INIT COMBAT
     }
 
@@ -63,6 +66,7 @@ public class EncounterManager : MonoBehaviour
 
     public void EndCombat(bool win)
     {
+        camera.gameObject.SetActive(true);
         if (win)
         {
             //Kill off zombie and players. 

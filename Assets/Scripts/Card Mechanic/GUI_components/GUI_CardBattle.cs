@@ -15,7 +15,9 @@ public class GUI_CardBattle : MonoBehaviour
     
     public GUI_HandInteractions handInteraction;
     public GUI_CardInteraction selectedCard;
-    public GUI_CardInteraction selectedEnemyCard; 
+    public GUI_CardInteraction selectedEnemyCard;
+
+    [SerializeField] private Camera fightCamera;
 
     private void OnEnable() {
         BoardController.Instance.OnTurnEnd += turnEnd;
@@ -29,7 +31,7 @@ public class GUI_CardBattle : MonoBehaviour
         if (BoardController.Instance.ActiveBattle && BoardController.Instance.PlayerTurn){
             if (Input.GetMouseButtonDown(0)){
                 //raycast after cards? 
-                Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+                Ray ray = fightCamera.ScreenPointToRay (Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask)){
                     // selection of card
