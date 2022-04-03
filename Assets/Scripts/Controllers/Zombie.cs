@@ -25,8 +25,11 @@ public class Zombie : MonoBehaviour
     private void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
-        manager = EncounterManager.Instance;
+    }
 
+    private void Start()
+    {
+        manager = EncounterManager.Instance;
         patrolId = 0;
 
         SetNextPatrolPoint();
@@ -34,11 +37,19 @@ public class Zombie : MonoBehaviour
 
     private void SetNextPatrolPoint()
     {
+        if (patrolPoints.Length == 0 || patrolPoints[0] != null) return;
+        
         if ((patrolId + 1) == patrolPoints.Length) patrolId = 0;
         else patrolId++;
 
         curTarget = patrolPoints[patrolId].position;
         agent.SetDestination(curTarget);
+    }
+
+    public void AttackPlayer()
+    {
+        playerTrans = Player.Instance.transform;
+        state = zombieState.Attacking;
     }
 
     private void NextAction()
@@ -61,6 +72,7 @@ public class Zombie : MonoBehaviour
             agent.SetDestination(playerTrans.position);
             if (Vector3.Distance(transform.position, playerTrans.position) < 4)
             {
+                Debug.Log($"Zombie In Range manager= {manager.name}");
                 Vector3 zombiePos = transform.position;
                 agent.SetDestination(zombiePos);
                 manager.RequestCombat(playerTrans.position, zombiePos, this);

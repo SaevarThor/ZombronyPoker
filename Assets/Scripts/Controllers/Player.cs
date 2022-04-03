@@ -69,6 +69,10 @@ public class Player : MonoBehaviour
         Vector3 pos = positions[0];
         foreach (var position in positions)
         {
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(position, out hit, 1.0f, NavMesh.AllAreas)) {
+                return hit.position;
+            }
         }
 
         return pos;

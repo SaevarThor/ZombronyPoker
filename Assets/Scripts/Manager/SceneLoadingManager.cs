@@ -8,6 +8,6 @@ public class SceneLoadingManager : MonoBehaviour
     public static void LoadNewScene(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName); 
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+       // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

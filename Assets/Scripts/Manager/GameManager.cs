@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public int ZombificationMaxValue = 20;
     public bool PlayerIsDead = false;
 
+    public GameObject ZombiePrefab;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

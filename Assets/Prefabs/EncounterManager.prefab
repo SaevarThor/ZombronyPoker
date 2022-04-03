@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   table: {fileID: 1269029718547634099, guid: 45b0e6380f3e16c49bf9b6954d4bd28f, type: 3}
   camera: {fileID: 0}
+  ItemVisual: {fileID: 0}
 --- !u!114 &1901550128
 MonoBehaviour:
   m_ObjectHideFlags: 0

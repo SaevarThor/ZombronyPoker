@@ -64,16 +64,11 @@ public class ItemPanel : MonoBehaviour
         Text.text = FightFlavorText[Random.Range(0, FightFlavorText.Length)];
         ButtonText.text = FightButtonText[Random.Range(0, FightButtonText.Length)];
         Image.sprite = FightImage;
-        
-        
+        GameObject g = Instantiate(GameManager.Instance.ZombiePrefab, Player.Instance.GetRandomPlayerPos(), Quaternion.identity);
+
+        g.GetComponent<Zombie>().AttackPlayer();
     }
 
-    private Vector3 GetEnemySpaw()
-    {
-      //  Vector3[] pos = Player.Instance.GetRandomPlayerPos();
-      return new Vector3();
-    }
-    
     public void SetNothingPanel()
     {
         UiParent.SetActive(true);
