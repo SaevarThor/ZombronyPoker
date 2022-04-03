@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Interactible
+  - Card
+  - PlayerPlayArea
+  - OpponentPlayArea
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - GUI_Card
+  - GUI_Deck
+  - GUI_PlayArea
   - 
   - 
   - 
