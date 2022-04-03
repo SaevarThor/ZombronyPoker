@@ -70,7 +70,7 @@ public class GUI_CardBattle : MonoBehaviour
                         }*/
                        
                        if (selectedCard == null) return;
-                       hit.transform.GetComponent<IClickable>().Click(selectedCard.thisCard);
+                       hit.transform.GetComponent<IClickable>().Click(selectedCard);
                        handInteraction.RemoveFromHand(selectedCard.transform);
                        deSelectCard();
                        
