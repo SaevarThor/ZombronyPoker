@@ -67,9 +67,11 @@ public class Player : MonoBehaviour
         }
 
         Vector3 pos = positions[0];
-        foreach (var pos in positions)
+        foreach (var position in positions)
         {
         }
+
+        return pos;
     }
 
     private void Update()

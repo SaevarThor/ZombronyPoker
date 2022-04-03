@@ -70,7 +70,8 @@ public class ItemPanel : MonoBehaviour
 
     private Vector3 GetEnemySpaw()
     {
-        Vector3[] pos = Player.Instance.GetRandomPlayerPos();
+      //  Vector3[] pos = Player.Instance.GetRandomPlayerPos();
+      return new Vector3();
     }
     
     public void SetNothingPanel()
