@@ -27,6 +27,7 @@ public class EventManager : MonoBehaviour
 
     public void RequestEvent(Sprite newImage, string newText, IRequest request)
     {
+        Time.timeScale = 0;
         Player.Instance.SetMovement(false);
         image.sprite = newImage;
         text.text = newText;

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4444007739472934843}
   - component: {fileID: 5472906770811597071}
   - component: {fileID: 4915235517789943995}
+  - component: {fileID: 2823020103891025744}
   m_Layer: 0
   m_Name: LordOfManagers
   m_TagString: Untagged
@@ -57,3 +58,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bdb222111131a8478af31f039437f75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapPosition: 0
+  ZombificationTimer: 0
+  ZombificationMaxValue: 20
+  PlayerIsDead: 0
+--- !u!114 &2823020103891025744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091212591975294569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 706624e26c8f76d4ea7e3cbdab3043dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Syringes: 1
+  SyringeHeal: 4

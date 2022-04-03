@@ -1,6 +1,7 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 
 public class Player : MonoBehaviour
 {
@@ -55,6 +56,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public Vector3 GetRandomPlayerPos()
+    {
+        List<Vector3> positions = new List<Vector3>();
+        for (int i = 0; i < 6; i++)
+        {
+            float x = Random.Range(3, 8);
+            float z = Random.Range(3, 8); 
+            positions.Add(new Vector3(x, this.transform.position.y, z));
+        }
+
+        Vector3 pos = positions[0];
+        foreach (var pos in positions)
+        {
+        }
+    }
+
     private void Update()
     {
         if (isLeaving)
@@ -65,7 +82,6 @@ public class Player : MonoBehaviour
             }   
         }
         if (!isSearching || !canMove) return;
-
         if (Vector3.Distance(transform.position, agent.destination) < 1)
         {
             EncounterManager.Instance.Search(searchContainer);
