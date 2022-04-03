@@ -146,23 +146,22 @@ public class BoardController : MonoBehaviour {
 
     // The attack happens in the firs IF statement I keep forgeting 
     public void Attack(Card attacker, Card target){
-        if (attacker.Attack(target) != -1){
-            if (attacker.faction == CardFaction.player){
-                //send signal to gui
 
-                // end the turn for the player on attack
-                //endTurn(CardFaction.player);
+        //we can only attack or play a card to the table
+        if (!hasPlayedCard){
+            if (attacker.Attack(target) != -1){
+                // send signal attack ok
             } else {
-                //send signal to gui    
+                // send signal attack failed
             }
         }
     }
     
     // gives a card the OnBoard status
     public int PlayCard(Card card){
-        // cost check for the player
-        if ((card.faction != CardFaction.Enemy && resourcepool < card.Cost) || card.HasAttackedThisRound == true){
-            // Send signal
+        // cost check for the player and check if we have played a card this round or if we have attacked this round
+        if ((card.faction != CardFaction.Enemy && resourcepool < card.Cost) || hasPlayedCard || playerHasAttacked){
+            // Send signal (Card play denied)
             return -1;
         }
 
@@ -171,7 +170,7 @@ public class BoardController : MonoBehaviour {
         LastPlayedCard = card;
         hasPlayedCard = true;
 
-        // Send signal
+        // Send signal (card play allowed)
         return 0;
     }
 
@@ -221,6 +220,7 @@ public class BoardController : MonoBehaviour {
 
         hasDrawnCard = false;
         hasPlayedCard = false;
+        playerHasAttacked = false;
 
     }
 
@@ -251,5 +251,6 @@ public class BoardController : MonoBehaviour {
 
         hasDrawnCard = false;
         hasPlayedCard = false;
+        playerHasAttacked = false;
     }
 }
