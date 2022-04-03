@@ -1,64 +1,87 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GUI_EnemyController : MonoBehaviour {
 
     public GUI_PlayArea playArea;
     public GUI_HandInteractions GUIHand;
+    public int cardSize = 5;
+    
     private List<GameObject> allCards = new List<GameObject>();
     // State
     private List<Card> playerCardOnBoard = new List<Card>();
     private List<Card> myCardsOnBoard = new List<Card>();
     private List<Card> myCardsInHand = new List<Card>();
-    private void Start() {
 
+    [SerializeField] private CardSlot[] Slots;
+
+    private bool isDoing; 
+    
+    private void Start()
+    {
+        myCardsInHand = DeckController.Instance.generateOpponentDeck(cardSize);
+        Debug.Log($"Recieiving {myCardsInHand.Count} cards");
+
+        foreach (var card in myCardsInHand)
+        {
+            card.state = CardState.OnHand;
+            GameObject g = GUIHand.InstansiateNewCard(card);
+            g.transform.tag = "OpponentCard";
+            allCards.Add(g);
+        }
+        
+        BoardController.Instance.Enemy = this;
     }
 
-    private void Update() {
+    public void EnemyTurn()
+    {
+        if (isDoing) return;
+        isDoing = true;
+        Debug.Log("Setting Enemy Turn");
+        float thinkTimer = Random.Range(1, 3);
+        //Set zombie state to thinking
 
-        // Simple AI to make the enemy draw a card, play a card and attack a random card if any. 
-        if(BoardController.Instance.OpponentTurn){
-            //update state
-            updateState();
+        StartCoroutine(ThinkAndDo(thinkTimer));
+    }
 
-            //draw card
-           /* Card[] drawn = BoardController.Instance.DrawCard(CardFaction.Enemy);
-            if (drawn != null){
-                Debug.Log(string.Format("the enemy drew {0}", drawn.CardName));
-                if (GUIHand != null)
-                   allCards.Add(GUIHand.InstansiateNewCard(drawn));
-            } else {
-                Debug.LogWarning("Trying to do gui-draw card but no card was drawn");
-            }*/
+    private IEnumerator ThinkAndDo(float thinkTimer)
+    {
+        yield return new WaitForSeconds(thinkTimer);
+        updateState();
+        Debug.Log($"Cum {myCardsInHand.Count}");
+        
+        CardSlot[] emptySlots = Slots.Where(s => s.State == CardSlot.Slotstate.Empty).ToArray();
 
-            updateState();
-            //Play card
+        if (!ShouldAttack(emptySlots.Length))
+        {
+            Debug.Log("I wanna place a card");
             int randomIndex = Random.Range(0,myCardsInHand.Count);
-            if (myCardsInHand.Count > 0) {
-                Debug.Log(string.Format("the enemy played {0}", myCardsInHand[randomIndex].CardName));
-                // we place the Visuals first for a reason so the state is correct for updating the data
-                GameObject cardObj = CardToObj(myCardsInHand[randomIndex].CardId);
-                playArea.PlaceInPlayArea(cardObj.transform);
-                GUIHand.RemoveFromHand(cardObj.transform);
-
-                BoardController.Instance.PlayCard(myCardsInHand[randomIndex]);
-            } else {
-                Debug.Log("could not play a card");
-            }
-
-            updateState();
-            //Attack
-            if (playerCardOnBoard.Count > 0 && myCardsOnBoard.Count > 0){
-                
+            Card randomCard = myCardsInHand[randomIndex];
+            GameObject cardObj = CardToObj(randomCard.CardId);
+            emptySlots[0].Click(cardObj.GetComponent<GUI_CardInteraction>());
+            GUIHand.RemoveFromHand(cardObj.transform);
+            
+            BoardController.Instance.PlayCard(randomCard);
+            
+            myCardsOnBoard.Add(randomCard);
+            myCardsInHand.Remove(randomCard);
+        }
+        else
+        {
+            Debug.Log($"target = {playerCardOnBoard.Count} vs attackers = {myCardsOnBoard.Count}");
+            if (playerCardOnBoard.Count > 0 && myCardsOnBoard.Count > 0)
+            {
                 Card target = playerCardOnBoard[Random.Range(0,playerCardOnBoard.Count)];
                 Card attacker = myCardsOnBoard[Random.Range(0,myCardsOnBoard.Count)];
-
-                ////Debug.Log(string.Format("The opponent used {0} to attack {1}", attacker.CardName, target.CardName));
                 BoardController.Instance.Attack(attacker, target);
-            }
-
-            BoardController.Instance.endTurn(CardFaction.Enemy);
+            } else 
+                Debug.LogError("No target to attack");
         }
+
+        isDoing = false;
+        BoardController.Instance.endTurn(CardFaction.Enemy);
     }
 
     private void updateState(){
@@ -71,7 +94,10 @@ public class GUI_EnemyController : MonoBehaviour {
             }
         }
 
-        myCardsOnBoard.Clear();
+        List<Card> tempList = myCardsOnBoard.Where(c => c.state == CardState.OnBoard).ToList();
+        myCardsOnBoard = tempList;
+        
+        /*myCardsOnBoard.Clear();
         foreach(Card card in DeckController.Instance.OpponentDeck)
         {
             if (card.state == CardState.OnBoard)
@@ -81,12 +107,12 @@ public class GUI_EnemyController : MonoBehaviour {
         }
 
 
-        myCardsInHand.Clear();
+        /*myCardsInHand.Clear();
         foreach(Card card in DeckController.Instance.OpponentDeck){
             if (card.state == CardState.OnHand){
                 myCardsInHand.Add(card);
             }
-        }
+        }*/
 
        List<GameObject> allCardsNew = new List<GameObject>();
         foreach (GameObject card in allCards){
@@ -96,6 +122,17 @@ public class GUI_EnemyController : MonoBehaviour {
             }
         }
         allCards = allCardsNew;
+    }
+
+    private bool ShouldAttack(int emptySlots)
+    {
+        if (emptySlots == 3) return false;
+
+        if (emptySlots == 0) return true;
+
+        int random = Random.Range(1, 4);
+
+        return random > emptySlots;
     }
 
     private void placeCard(){

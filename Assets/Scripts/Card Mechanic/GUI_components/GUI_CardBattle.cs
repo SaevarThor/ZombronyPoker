@@ -31,7 +31,6 @@ public class GUI_CardBattle : MonoBehaviour
     {   
         if (BoardController.Instance.ActiveBattle && BoardController.Instance.PlayerTurn){
             if (Input.GetMouseButtonDown(0)){
-                Debug.Log("Click");
                 //raycast after cards? 
                 Ray ray = fightCamera.ScreenPointToRay (Input.mousePosition);
                 RaycastHit hit;
@@ -41,6 +40,8 @@ public class GUI_CardBattle : MonoBehaviour
                     if (selectedCard != null && hit.transform.CompareTag("OpponentCard")){
                         //attack the enemy card
                         BoardController.Instance.Attack(selectedCard.thisCard, hit.transform.GetComponent<GUI_CardInteraction>().thisCard);
+                        selectedCard.DeSelect();
+                        BoardController.Instance.endPlayerTurn();
                     }
                     if (hit.transform.CompareTag("Card") && hit.transform != selectedCard){
 
@@ -72,7 +73,6 @@ public class GUI_CardBattle : MonoBehaviour
                        
                        if (selectedCard == null) return;
                        
-                       Debug.Log("FUCK");
                        hit.transform.GetComponent<IClickable>().Click(selectedCard);
                        handInteraction.RemoveFromHand(selectedCard.transform);
                        deSelectCard();

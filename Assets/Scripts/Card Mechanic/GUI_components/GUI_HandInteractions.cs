@@ -7,11 +7,14 @@ using UnityEngine;
 public class GUI_HandInteractions : MonoBehaviour {
 
     public GameObject card_prefab;
-
     private List<Transform> cardOnHand = new List<Transform>();
+
+    public bool isPlayer;
+    
     private void Start()
     {
-        StartCoroutine(WaitAndDraw());
+        if (isPlayer)
+            StartCoroutine(WaitAndDraw());
     }
 
     private IEnumerator WaitAndDraw()

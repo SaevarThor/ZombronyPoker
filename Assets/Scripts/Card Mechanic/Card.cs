@@ -103,7 +103,9 @@ public class Card {
 
     public int TakeDamage(int damage){
         if (state == CardState.OnBoard) {
+            Debug.Log($"{this.CardName} took {damage}");
             CurrentHealth -= damage;
+            Debug.Log($"{this.CardName} now has {CurrentHealth} health");
             if (CurrentHealth <= 0){
                 //Debug.Log(string.Format("{0} took terminal damage", CardName));
                 setCardState(CardState.Destroyed);

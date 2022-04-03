@@ -6,6 +6,7 @@ public class CardSlot : MonoBehaviour, IClickable
 {
    [SerializeField] private GameObject Visual;
    private Card heldCard;
+   private GameObject alsoHeldCard;
 
    [SerializeField] private BoxCollider collider;
    
@@ -23,6 +24,7 @@ public class CardSlot : MonoBehaviour, IClickable
       if (card == null) return;
       
          State = Slotstate.HasCard;
+         card.thisCard.state = CardState.OnBoard;
          heldCard = card.thisCard;
          heldCard.OnCardDestroyed += EmptySlot;
          Visual.SetActive(false);
@@ -30,6 +32,7 @@ public class CardSlot : MonoBehaviour, IClickable
          Transform cardTrans = card.transform; 
          cardTrans.position = transform.position;
          cardTrans.rotation = transform.rotation;
+         alsoHeldCard = cardTrans.gameObject;
          
          BoardController.Instance.endPlayerTurn();
    }
@@ -37,8 +40,10 @@ public class CardSlot : MonoBehaviour, IClickable
    private void EmptySlot()
    {
       State = Slotstate.Empty;
+      heldCard.state = CardState.Destroyed;
       Visual.SetActive(true);
       collider.enabled = true;
       heldCard.OnCardDestroyed -= EmptySlot;
+      Destroy(alsoHeldCard);
    }
 }

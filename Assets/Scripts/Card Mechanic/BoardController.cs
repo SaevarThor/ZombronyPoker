@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class BoardController : MonoBehaviour {
 
@@ -40,6 +41,10 @@ public class BoardController : MonoBehaviour {
 
     public bool hasDrawnCard = false;
     public bool hasPlayedCard = false;
+
+    public GUI_EnemyController Enemy;
+
+    public TMP_Text TurnText;
 
     private void Awake() {
         if (Instance != null && Instance != this){
@@ -184,11 +189,15 @@ public class BoardController : MonoBehaviour {
         } else{
             Debug.Log("opponent ended turn");
             OpponentTurn = false;
+            TurnText.text = "Player turn";
         }
     }
 
     public void endPlayerTurn(){
         endTurn(CardFaction.player);
+        Enemy.EnemyTurn();
+
+        TurnText.text = "Enemy turn";
     }
 
     public void DecrementCardsLeft(CardFaction faction){
