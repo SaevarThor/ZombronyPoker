@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,9 @@ public class OverWorldUI : MonoBehaviour
     private bool _move;
     private float newValue;
 
+    [SerializeField] private TMP_Text syringeAmount;
+    [SerializeField] private Button syringeButton;
+    private int syringes;
 
     private void Awake()
     {
@@ -25,12 +29,32 @@ public class OverWorldUI : MonoBehaviour
     {
         ZombSlider.maxValue = GameManager.Instance.ZombificationMaxValue;
         ZombSlider.value = GameManager.Instance.ZombificationTimer;
+        syringes = InventoryManager.Instance.GetSyringes();
+        syringeAmount.text = syringes.ToString();
+
+        syringeButton.interactable = syringes != 0;
+        syringeButton.onClick.AddListener(UseSyringe);
     }
+    
 
     public void MoveSlider(int newAmount)
     {
         _move = true;
         newValue = ZombSlider.value + newAmount;
+    }
+
+    private void UseSyringe()
+    {
+        if (syringes > 0)
+        {
+            InventoryManager.Instance.UseSyringe();
+            syringes--;
+            syringeAmount.text = syringes.ToString();
+            newValue -= InventoryManager.Instance.SyringeHeal;
+            ZombSlider.value = GameManager.Instance.ZombificationTimer;
+        }
+
+        syringeButton.interactable = syringes != 0;
     }
 
     private void Update()

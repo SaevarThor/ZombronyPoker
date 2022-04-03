@@ -15,6 +15,8 @@ public class EncounterManager : MonoBehaviour
     private Vector3 attackPosition;
     private bool zoomCamera;
 
+    public ItemPanel ItemVisual;
+
     private void Awake()
     {
         if (Instance != this && Instance != null)

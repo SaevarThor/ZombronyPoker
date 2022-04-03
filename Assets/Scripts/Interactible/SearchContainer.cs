@@ -44,26 +44,27 @@ public class SearchContainer : MonoBehaviour, IInteractible, IRequest
         if (random < itemWeight)
         {
             //Give Item
-            Debug.Log("Give Item");
+            EncounterManager.Instance.ItemVisual.SetItemPanel();
+            InventoryManager.Instance.AddSyringe(1);
             return;
         }
 
         if (random < (itemWeight + fightWeight))
         {
             //Fight
-            Debug.Log("Start Fight");
+            EncounterManager.Instance.ItemVisual.SetFightPanel();
             return;
         }
 
         if (random < (itemWeight + fightWeight + cardWeight))
         {
             //Give card
-            Debug.Log("Give Card");
+            EncounterManager.Instance.ItemVisual.SetCardPanel();
             return;
         }
         
         //Nothing Happens
-        Debug.Log("Nothing happens");
+        EncounterManager.Instance.ItemVisual.SetNothingPanel();
 
     }
 }
