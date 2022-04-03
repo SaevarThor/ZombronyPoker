@@ -22,14 +22,14 @@ public class GUI_EnemyController : MonoBehaviour {
             updateState();
 
             //draw card
-            Card drawn = BoardController.Instance.DrawCard(CardFaction.Enemy);
+           /* Card[] drawn = BoardController.Instance.DrawCard(CardFaction.Enemy);
             if (drawn != null){
                 Debug.Log(string.Format("the enemy drew {0}", drawn.CardName));
                 if (GUIHand != null)
                    allCards.Add(GUIHand.InstansiateNewCard(drawn));
             } else {
                 Debug.LogWarning("Trying to do gui-draw card but no card was drawn");
-            }
+            }*/
 
             updateState();
             //Play card
@@ -104,7 +104,7 @@ public class GUI_EnemyController : MonoBehaviour {
     // Animate the drawing of a card
     private void drawCard()
     {
-        Debug.Log("drawing card");
+   /*     Debug.Log("drawing card");
         Card Drawn = BoardController.Instance.DrawCard(CardFaction.Enemy);
         if (Drawn != null){
             // Instansiate a card in the hand
@@ -112,7 +112,7 @@ public class GUI_EnemyController : MonoBehaviour {
             GUIHand.InstansiateNewCard(Drawn);
         } else {
             Debug.LogWarning("Trying to do gui-draw card but no card was drawn");
-        }
+        }*/
     }
 
     //find a cardobj from cardID

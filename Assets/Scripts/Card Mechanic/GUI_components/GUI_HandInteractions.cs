@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GUI_HandInteractions : MonoBehaviour {
@@ -6,8 +9,24 @@ public class GUI_HandInteractions : MonoBehaviour {
     public GameObject card_prefab;
 
     private List<Transform> cardOnHand = new List<Transform>();
-    private void Start() {
+    private void Start()
+    {
+        StartCoroutine(WaitAndDraw());
+    }
+
+    private IEnumerator WaitAndDraw()
+    {
+        yield return new WaitForSeconds(.2f);
+
+        Card[] cards = DeckController.Instance.PlayerDeck.ToArray();
+        Debug.Log(cards.Length);
+        foreach (var card in cards)
+        {
+            card.setCardState(CardState.OnHand);
+            cardOnHand.Add(InstansiateNewCard(card).transform);
+        }
         
+        spaceCards();
     }
 
     public GameObject InstansiateNewCard(Card card){
@@ -17,9 +36,7 @@ public class GUI_HandInteractions : MonoBehaviour {
             newCard = Instantiate(card_prefab, transform.position, transform.rotation);
             newCard.transform.parent = this.transform;
             newCard.GetComponent<GUI_CardInteraction>().thisCard = card;
-            cardOnHand.Add(newCard.transform);
         }
-        spaceCards();
 
         //attach card class
 
@@ -35,7 +52,7 @@ public class GUI_HandInteractions : MonoBehaviour {
     }
     
     private void spaceCards(){
-        float spacing = 1.25f;
+        float spacing = 0.125f;
         float offset = 0;
         foreach (Transform trans in cardOnHand){
             trans.position = this.transform.position;

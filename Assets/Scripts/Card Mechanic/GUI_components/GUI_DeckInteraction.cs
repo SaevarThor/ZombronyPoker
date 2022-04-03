@@ -32,14 +32,14 @@ public class GUI_DeckInteraction : MonoBehaviour {
 
     // Animate the drawing of a card
     private void drawCard(){
-        Card Drawn = BoardController.Instance.DrawCard(CardFaction.player);
+    /*    Card[] Drawn = BoardController.Instance.DrawCard(CardFaction.player);
         if (Drawn != null){
             // Instansiate a card in the hand
             if (GUIHand != null)
             GUIHand.InstansiateNewCard(Drawn);
         } else {
             Debug.LogWarning("Trying to do gui-draw card but no card was drawn");
-        }
+        }*/
     }
 
     // Animate card reveal

@@ -42,11 +42,11 @@ public class BoardController : MonoBehaviour {
     public bool hasPlayedCard = false;
 
     private void Awake() {
-            if (Instance != null && Instance != this){
-                Destroy(this);
-            } else {
-                Instance = this;
-            }
+        if (Instance != null && Instance != this){
+            Destroy(this);
+        } else {
+            Instance = this;
+        }
     }
 
     private void Start() {

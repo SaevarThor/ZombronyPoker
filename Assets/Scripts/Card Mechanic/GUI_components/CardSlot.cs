@@ -27,6 +27,11 @@ public class CardSlot : MonoBehaviour, IClickable
          heldCard.OnCardDestroyed += EmptySlot;
          Visual.SetActive(false);
          collider.enabled = false;
+         Transform cardTrans = card.transform; 
+         cardTrans.position = transform.position;
+         cardTrans.rotation = transform.rotation;
+         
+         BoardController.Instance.endPlayerTurn();
    }
 
    private void EmptySlot()

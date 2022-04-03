@@ -8,12 +8,12 @@ public class GUI_PlayArea : MonoBehaviour
     private List<Transform> cardInPlayArea;
     
     private void OnDisable() {
-        CleanPlayArea();
+        //CleanPlayArea();
         //clean up listeners
-        foreach (Transform card in cardInPlayArea) 
+/*        foreach (Transform card in cardInPlayArea) 
         {
             card.GetComponent<GUI_CardInteraction>().thisCard.OnCardDestroyed -= CleanPlayArea;
-        }
+        }*/
     }
 
     public void PlaceInPlayArea(Transform card){
