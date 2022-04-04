@@ -11,10 +11,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float rotationSpeed;
 
     private NavMeshAgent agent;
-    private bool canMove = true;
+    public bool canMove = true;
     private bool isSearching;
-    private bool isLeaving;
-    private bool isWin;
+    public bool isLeaving;
+    public bool isWin;
     private SearchContainer searchContainer;
 
     public bool IsFighting;
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Anim.SetFloat("Speed", agent.velocity.magnitude);
-        if (isLeaving)
+        if (isLeaving && canMove)
         {
             if (Vector3.Distance(transform.position, agent.destination) < 1)
             {

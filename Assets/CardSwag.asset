@@ -42,7 +42,7 @@ MonoBehaviour:
   - Williams
   - Paulson
   - Sveinson
-  - Bye
+  - Cumlock
   - Boa
   - Hundall
   - California
@@ -63,29 +63,75 @@ MonoBehaviour:
   - Gleinster
   - Martinoy
   Flairs:
-  - '"Of the Flesh"'
-  - '"The Destoyer"'
-  - '"The Cuckhold"'
-  - '"The Sickly"'
-  - '"Of The Valley"'
-  - '"Certified Badass"'
-  - '"The Spin Doctor"'
-  - '"Rat King"'
-  - '"Rat Queen"'
-  - '"Battery Licker"'
-  - '"Lubbock"'
-  - '"Of Many Moons"'
-  - '"Of The Twin Suns"'
-  - '"Actual Cannibal"'
-  - '"The Raver"'
-  - '"Of Misfortune"'
-  - '"The Jolly"'
-  - '"The Machine"'
-  - '"Fair Hair"'
-  - '"Brittle Bones"'
-  - '"Strong In Theory"'
-  - '"Actual Child"'
-  - '"Who Am I"'
+  - flair: '"Of the Flesh"'
+    damage: 3
+    health: 6
+  - flair: '"The Destroyer"'
+    damage: 5
+    health: 3
+  - flair: '"The Cuckholded"'
+    damage: 2
+    health: 2
+  - flair: '"The Sickly"'
+    damage: 2
+    health: 2
+  - flair: '"Of The Valley"'
+    damage: 3
+    health: 3
+  - flair: '"Certified Badass"'
+    damage: 2
+    health: 5
+  - flair: '"The Spin Doctor"'
+    damage: 4
+    health: 2
+  - flair: '"Rat King"'
+    damage: 2
+    health: 6
+  - flair: '"Rat Queen"'
+    damage: 6
+    health: 2
+  - flair: '"Battery Licker"'
+    damage: 2
+    health: 2
+  - flair: '"Lubbock"'
+    damage: 8
+    health: 8
+  - flair: '"Of Many Moons"'
+    damage: 2
+    health: 3
+  - flair: '"Of The Twin Sun"'
+    damage: 4
+    health: 4
+  - flair: '"Actul Cannibal"'
+    damage: 6
+    health: 2
+  - flair: '"The Raver"'
+    damage: 5
+    health: 1
+  - flair: '"Of Misfortune"'
+    damage: 1
+    health: 6
+  - flair: '"The Jolly"'
+    damage: 3
+    health: 2
+  - flair: '"The Machine"'
+    damage: 2
+    health: 8
+  - flair: '"Fair Hair"'
+    damage: 2
+    health: 2
+  - flair: '"Brittle Bones"'
+    damage: 2
+    health: 2
+  - flair: '"Srong in Theory"'
+    damage: 1
+    health: 4
+  - flair: '"Actual Child"'
+    damage: 1
+    health: 1
+  - flair: '"Who am I"'
+    damage: 4
+    health: 3
   Pictures:
   - {fileID: 21300000, guid: 8991ff568c7732449afa68740c8e9975, type: 3}
   - {fileID: 21300000, guid: e0a84349e91997149adacbc78261f10b, type: 3}
@@ -160,19 +206,45 @@ MonoBehaviour:
   - Murgle
   - Burgle
   ZombieFliars:
-  - '"The Intelligent"'
-  - '"Of the Compost"'
-  - '"The Crypt Walker"'
-  - '"The Crypt Dancer"'
-  - '"Window Peeper"'
-  - '"The Chosen One"'
-  - '"The Academic"'
-  - '"Starry Eyed"'
-  - '"Of the Smell"'
-  - '"Of the Dirt"'
-  - '"The Handler"'
-  - '"Poker Face"'
-  - '"Lubbock"'
+  - flair: '"The intelligent"'
+    damage: 2
+    health: 4
+  - flair: '"Knight of Compost"'
+    damage: 3
+    health: 3
+  - flair: '"The Crypt Walker"'
+    damage: 2
+    health: 1
+  - flair: '"The Crypt Dancer"'
+    damage: 2
+    health: 2
+  - flair: '"Window Peeper"'
+    damage: 3
+    health: 2
+  - flair: '"The Chosen One"'
+    damage: 4
+    health: 2
+  - flair: '"The Academic"'
+    damage: 0
+    health: 6
+  - flair: '"Starry Eyed"'
+    damage: 2
+    health: 2
+  - flair: '"Of the Smell"'
+    damage: 3
+    health: 1
+  - flair: '"Of the Dirt"'
+    damage: 1
+    health: 1
+  - flair: '"The Handler"'
+    damage: 2
+    health: 2
+  - flair: '"Poker face"'
+    damage: 1
+    health: 7
+  - flair: '"Lubbock"'
+    damage: 3
+    health: 6
   ZombiePictures:
   - {fileID: 21300000, guid: ead2068742297274cb3618e4d94f906a, type: 3}
   - {fileID: 21300000, guid: 9de0ecf381a14674cb80887ef9c5e130, type: 3}

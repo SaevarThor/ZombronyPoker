@@ -10,6 +10,7 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource source;
     public AudioSource fightSource;
+    public AudioSource fightWinSource;
     
     private void Awake()
     {
@@ -35,5 +36,10 @@ public class SoundManager : MonoBehaviour
           fightSource.Stop();
           source.Play();
       }
+    }
+
+    public void PlaySoundwin()
+    {
+        fightWinSource.Play();
     }
 }

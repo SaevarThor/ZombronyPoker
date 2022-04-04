@@ -24,7 +24,7 @@ public class GUI_EnemyController : MonoBehaviour {
      
     private void Start()
     {
-        myCardsInHand = DeckController.Instance.generateOpponentDeck(cardSize, bossFight);
+        myCardsInHand = DeckController.Instance.generateOpponentDeck(GameManager.Instance.MapPosition + 1, bossFight);
         Debug.Log($"Recieiving {myCardsInHand.Count} cards");
 
         foreach (var card in myCardsInHand)

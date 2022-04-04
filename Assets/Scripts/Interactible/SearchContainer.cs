@@ -34,6 +34,7 @@ public class SearchContainer : MonoBehaviour, IInteractible, IRequest
 
     public void AcceptRequest()
     {
+        if (used) return;
         used = true;
         this.GetComponent<Collider>().enabled = false;
         visual.SetActive(false);

@@ -50,6 +50,9 @@ public class GUI_CardBattle : MonoBehaviour
                         InAttackState = true;
                         selectedCard.HasAttacked();
                         BoardController.Instance.Attack(selectedCard.thisCard, hit.transform.GetComponent<GUI_CardInteraction>().thisCard);
+
+                        BoardController.Instance.TutText.text = BoardController.Instance.Tut_Attack;
+                        
                         CardSoundController.Instance.CardHit.Play();
                         selectedCard.DeSelect();
                         selectedCard = null;
@@ -61,14 +64,20 @@ public class GUI_CardBattle : MonoBehaviour
                         deSelectCard();
                         selectedCard = target.GetComponent<GUI_CardInteraction>();
                         if (InAttackState &&(selectedCard != null && selectedCard.thisCard.HasAttackedThisRound)) return;
-
-                        Debug.Log($"Selecing {selectedCard.thisCard.CardName} and has attacke = {selectedCard.thisCard.HasAttackedThisRound}");
                         selectedCard.Select();
-                        
+
                         if (hit.transform.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnBoard)
+                        {
                             cardCamera.SetAttacking(true);
+                            if (BoardController.Instance.TutText != null)
+                                BoardController.Instance.TutText.text = BoardController.Instance.Tut_Attack;
+                        }
                         else if (!InAttackState)
+                        {
+                            if (BoardController.Instance.TutText != null)
+                                BoardController.Instance.TutText.text = BoardController.Instance.Tut_PlaceCard;
                             cardCamera.SetAttacking(false);
+                        }
                     } 
                     // unselection of cards DOES NOT WORK ATM
                     else if (hit.transform.CompareTag("Card") && hit.transform == selectedCard){
