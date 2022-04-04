@@ -39,6 +39,18 @@ public class OverWorldUI : MonoBehaviour
 
         syringeButton.interactable = syringes != 0;
         syringeButton.onClick.AddListener(UseSyringe);
+        
+        if (ZombSlider.value > 10)
+        {
+            Half.SetActive(true);
+        } else 
+            Half.SetActive(false);
+
+        if (ZombSlider.value > 16)
+        {
+            ALmost.SetActive(true);
+        } else 
+            ALmost.SetActive(false);
     }
     
 
@@ -46,6 +58,11 @@ public class OverWorldUI : MonoBehaviour
     {
         _move = true;
         newValue = ZombSlider.value + newAmount;
+    }
+
+    public float GetValue()
+    {
+        return ZombSlider.value;
     }
 
     private void UseSyringe()
@@ -68,7 +85,7 @@ public class OverWorldUI : MonoBehaviour
         if (!_move) return;
         
         if (ZombSlider.value < newValue)
-            ZombSlider.value += (Time.deltaTime * 3);
+            ZombSlider.value += (Time.deltaTime);
 
         if (ZombSlider.value > 10)
         {

@@ -28,22 +28,33 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);       
     }
 
+    private void Update()
+    {
+        if (PlayerIsDead || OverWorldUI.Instance == null) return;
+        if ((ZombificationMaxValue - .1f) <= OverWorldUI.Instance.GetValue())
+        {
+            Debug.Log("kill player");
+            StartCoroutine(WaitAndLoad(3, "BossFight"));
+            PlayerIsDead = true; 
+        }
+    }
+
     public void SetZombification(int amount)
     {
         ZombificationTimer += amount;
-
-        if (ZombificationMaxValue < ZombificationTimer)
-        {
-            PlayerIsDead = true; 
-            StartCoroutine(WaitAndLoad(3, "BossFight"));
-        }
     }
 
     private IEnumerator WaitAndLoad(float timer, string sceneName)
     {
-        yield return new WaitForSeconds(timer); 
-        
-        SceneLoadingManager.LoadNewScene(sceneName);
+        yield return new WaitForSeconds(timer);
+
+        if (ZombificationTimer >= ZombificationMaxValue)
+        {
+            SceneLoadingManager.LoadNewScene(sceneName);
+        }
+        else
+            PlayerIsDead = false;
+
     }
 
     public void LoseGame()

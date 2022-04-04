@@ -39,8 +39,9 @@ public class OverWorldManager : MonoBehaviour
 
     private void Update()
     {
-        if (!move) return;
-        playerEmblem.position = Vector3.MoveTowards(playerEmblem.position, positions[curIndex].Pos, 0.005f);
+        if (!move || GameManager.Instance.PlayerIsDead) return;
+        
+        playerEmblem.position = Vector3.MoveTowards(playerEmblem.position, positions[curIndex].Pos, 0.001f);
 
         if (Vector3.Distance(playerEmblem.position, positions[curIndex].Pos) < .05f)
         {
