@@ -110,6 +110,7 @@ public class EncounterManager : MonoBehaviour
             //Kill Players
             //End game
             SceneLoadingManager.LoadNewScene("MainMenu");
+            Destroy(GameManager.Instance.GetComponent<GameObject>());
         }
     }
 
