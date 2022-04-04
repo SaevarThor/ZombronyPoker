@@ -119,9 +119,9 @@ public class BoardController : MonoBehaviour {
 
     public void InitializeTurn(GUI_EnemyController _enemy){
         Enemy = _enemy;
-        OpponentTurn = true;
-        PlayerTurn = false;
-        Enemy.EnemyTurn();
+        //OpponentTurn = true;
+        //PlayerTurn = false;
+        //Enemy.EnemyTurn();
     }
 
     // Actions
