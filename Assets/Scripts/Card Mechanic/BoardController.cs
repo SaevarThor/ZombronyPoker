@@ -77,22 +77,6 @@ public class BoardController : MonoBehaviour {
         
         if (ActiveBattle) {
 
-            // Check for win condition
-            if (cardsLeft <= 0){
-                //player has lost
-                if (OnPlayerLoss != null)
-                    OnPlayerLoss();
-                cleanUp();
-                ActiveBattle = false;
-            }
-            if (CardsLeftOpponent <= 0){
-                //player has won
-                if (OnPlayerWin != null)
-                    OnPlayerWin();
-                cleanUp();
-                ActiveBattle = false;
-            }
-
             // Ends the turn after one attack
             /*if (playerHasAttacked){
                 playerHasAttacked = false;
@@ -220,6 +204,11 @@ public class BoardController : MonoBehaviour {
                 hasEnded = true;
                 if (EncounterManager.Instance != null)
                     EncounterManager.Instance.EndCombat(false, 4);
+
+                if (OnPlayerLoss != null)
+                    OnPlayerLoss();
+                cleanUp();
+                ActiveBattle = false;
             }
         }
         else{
@@ -230,6 +219,12 @@ public class BoardController : MonoBehaviour {
                 hasEnded = true;
                 if (EncounterManager.Instance != null)
                     EncounterManager.Instance.EndCombat(true, 4);
+
+                //player has won
+                if (OnPlayerWin != null)
+                    OnPlayerWin();
+                cleanUp();
+                ActiveBattle = false;
             }
         }
     }

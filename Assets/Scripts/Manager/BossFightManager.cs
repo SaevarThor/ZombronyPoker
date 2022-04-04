@@ -28,8 +28,8 @@ public class BossFightManager : MonoBehaviour {
     private void PlayerLoss(){
         //show loss screen
         Debug.Log("Player lost! show loss screen");
-
         GameManager.Instance.LoseGame();
+        
     }
 
 
