@@ -23,6 +23,8 @@ public class EncounterManager : MonoBehaviour
     
     public ItemPanel ItemVisual;
 
+    public Zombie[] Zombies;
+
     private void Awake()
     {
         if (Instance != this && Instance != null)
@@ -37,6 +39,11 @@ public class EncounterManager : MonoBehaviour
         orignalCamePos = camera.transform.position;
     }
 
+    public void CanAttack()
+    {
+        
+    }
+
     public void RequestCombat(Vector3 playerPos, Vector3 zombiePos, Zombie zombie)
     {
         float x = (playerPos.x + zombiePos.x) / 2;
@@ -47,8 +54,8 @@ public class EncounterManager : MonoBehaviour
         tableSpawn.y += dropHeight;
         GameObject g = Instantiate(table, tableSpawn, Quaternion.identity);
         fightingTable = g.GetComponent<Table>(); 
-        Player.Instance.SetMovement(false);
-
+        Player.Instance.SetMovement(false); 
+        Player.Instance.IsFighting = true;
         fightingZombie = zombie;
         
         SoundManager.Instance.SetFight(true);
@@ -86,6 +93,8 @@ public class EncounterManager : MonoBehaviour
         camera.orthographicSize = 15;
         camera.transform.position = orignalCamePos;
         camera.transform.rotation = originalCamRot;
+
+        Player.Instance.IsFighting = false;
         
         SoundManager.Instance.SetFight(false);
 
@@ -101,6 +110,7 @@ public class EncounterManager : MonoBehaviour
             //Kill Players
             //End game
             SceneLoadingManager.LoadNewScene("MainMenu");
+            Destroy(GameManager.Instance.GetComponent<GameObject>());
         }
     }
 

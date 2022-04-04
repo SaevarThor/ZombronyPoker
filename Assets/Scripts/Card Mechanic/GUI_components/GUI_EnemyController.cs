@@ -34,7 +34,7 @@ public class GUI_EnemyController : MonoBehaviour {
 
         GUIHand.spaceCards();
         
-        BoardController.Instance.Enemy = this;
+        BoardController.Instance.InitializeTurn(this);
     }
 
     public void EnemyTurn()

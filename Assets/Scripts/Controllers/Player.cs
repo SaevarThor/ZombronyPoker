@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private bool isWin;
     private SearchContainer searchContainer;
 
+    public bool IsFighting;
+
     private void Awake()
     {
         if (Instance != this && Instance != null)

@@ -1,15 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CardSlot : MonoBehaviour, IClickable
 {
-   [SerializeField] private GameObject Visual;
+   public GameObject Outlines;
    private Card heldCard;
    private GameObject alsoHeldCard;
 
-   [SerializeField] private BoxCollider collider;
-   
+   public bool IsEnemy;
+
+   private GameObject curVis;
+
+   public BoxCollider collider;
+
+   private void Start()
+   {
+      if (IsEnemy) return;
+
+      curVis = Instantiate(Outlines, transform.position, transform.rotation);
+   }
+
    public enum Slotstate
    {
       Empty,
@@ -27,8 +37,14 @@ public class CardSlot : MonoBehaviour, IClickable
          card.thisCard.state = CardState.OnBoard;
          heldCard = card.thisCard;
          heldCard.OnCardDestroyed += EmptySlot;
-         Visual.SetActive(false);
-         collider.enabled = false;
+
+         if (!IsEnemy)
+         {
+            Destroy(curVis);
+            collider.enabled = false;
+         }
+         
+         
          Transform cardTrans = card.transform; 
          cardTrans.position = transform.position;
          cardTrans.rotation = transform.rotation;
@@ -41,15 +57,26 @@ public class CardSlot : MonoBehaviour, IClickable
    {
       State = Slotstate.Empty;
       heldCard.state = CardState.Destroyed;
-      if (Visual == null)
-         Visual = transform.GetChild(0).gameObject;
-      Visual.SetActive(true);
-      
-      if (collider == null) 
-         collider = GetComponent<BoxCollider>(); 
+
+      if (!IsEnemy)
+      {
+         if (Outlines == null)
+         {
+            Debug.LogError($"{gameObject.name} under {GetComponentInParent<Transform>().name} cant find outlines");
+         }
+         curVis = Instantiate(Outlines, transform.position, transform.rotation);
+         if (collider == null && this.GetComponent<BoxCollider>() != null) 
+            collider = GetComponent<BoxCollider>();
+      }
       
       collider.enabled = true;
       heldCard.OnCardDestroyed -= EmptySlot;
       Destroy(alsoHeldCard);
+   }
+
+   public void OnDisable()
+   {
+      if (heldCard != null)
+         heldCard.OnCardDestroyed -= EmptySlot;
    }
 }

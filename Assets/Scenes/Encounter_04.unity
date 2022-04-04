@@ -569,6 +569,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Encounter04
       objectReference: {fileID: 0}
+    - target: {fileID: 3328551188431321047, guid: e85e5c701e3b95244a6a6fe38fc91ef6,
+        type: 3}
+      propertyPath: IsEnding
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5094418434897029488, guid: e85e5c701e3b95244a6a6fe38fc91ef6,
         type: 3}
       propertyPath: m_RootOrder
