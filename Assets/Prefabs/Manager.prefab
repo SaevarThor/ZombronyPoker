@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76229dff66812c4f90fbe82bbd94126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CursorHover: {fileID: 2800000, guid: 9bba9a4981da4404abc785c77675c8d2, type: 3}
   playerCamera: {fileID: 0}
 --- !u!114 &1551795409715581145
 MonoBehaviour:
@@ -81,7 +82,9 @@ MonoBehaviour:
   camera: {fileID: 0}
   combatZone: {fileID: 5082343572265621555, guid: 1f6db38058150db4c9f1e0c2b18f54d5,
     type: 3}
+  isBossFight: 0
   ItemVisual: {fileID: 0}
+  Zombies: []
 --- !u!1001 &4959242547908127621
 PrefabInstance:
   m_ObjectHideFlags: 0

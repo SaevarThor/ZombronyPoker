@@ -515,7 +515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c4824a61bab924c99861d3e360ddf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSceneName: OverWorld
+  firstSceneName: IntroScene
   lordManager: {fileID: 1091212591975294569, guid: 2eb86ace4d120d445afd7e1070fd6ceb,
     type: 3}
 --- !u!4 &482202307
