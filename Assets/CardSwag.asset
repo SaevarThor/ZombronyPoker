@@ -26,6 +26,18 @@ MonoBehaviour:
   - Jonthan
   - Flint
   - Lubbock
+  - Sebastian
+  - Caroline
+  - Zenya
+  - Uagbe
+  - Muhammed
+  - Clarissa
+  - Horker
+  - Madonna
+  - Father
+  - Sister
+  - Mother
+  - Brother
   LastNames:
   - Williams
   - Paulson
@@ -36,6 +48,20 @@ MonoBehaviour:
   - California
   - Magnets
   - Lubbock
+  - Smith
+  - Hamburger
+  - Kentucky
+  - Parrington
+  - Bathson
+  - Loving
+  - Livingston
+  - Kidd
+  - Bellend
+  - Uranus
+  - Augustus
+  - Lemington
+  - Gleinster
+  - Martinoy
   Flairs:
   - '"Of the Flesh"'
   - '"The Destoyer"'
@@ -50,6 +76,16 @@ MonoBehaviour:
   - '"Lubbock"'
   - '"Of Many Moons"'
   - '"Of The Twin Suns"'
+  - '"Actual Cannibal"'
+  - '"The Raver"'
+  - '"Of Misfortune"'
+  - '"The Jolly"'
+  - '"The Machine"'
+  - '"Fair Hair"'
+  - '"Brittle Bones"'
+  - '"Strong In Theory"'
+  - '"Actual Child"'
+  - '"Who Am I"'
   Pictures:
   - {fileID: 21300000, guid: 8991ff568c7732449afa68740c8e9975, type: 3}
   - {fileID: 21300000, guid: e0a84349e91997149adacbc78261f10b, type: 3}
@@ -75,6 +111,23 @@ MonoBehaviour:
   - Watches Aliens Vs Predators every Lent
   - Plays Among Us public lobbies
   - Enjoys country music
+  - Never showers
+  - Used to be a game designer
+  - Has surprisingly few hands
+  - Is really into my little pony
+  - Steals individual fruits from grocery stores
+  - All thrill, no chill
+  - Lubbock
+  - Dislikes zombies about as much as most
+  - Plays dwarf fortress unironically
+  - Really enjoyed Rush Hour 2
+  - Only remembers the best 5 minutes of each day
+  - Has a bald spouse, likes hitting rocks
+  - Eats rocks, does not have long to live
+  - Really likes Jordan Peterson, smells terrible
+  - Fantazises about zombies
+  - Only eats when it rains, but drinks all the time
+  - Alcoholic, but cooks pretty well
   ZombieNames:
   - Urg
   - Rawr
@@ -88,6 +141,24 @@ MonoBehaviour:
   ZombieLastNames:
   - Gurgle
   - Urgle
+  - Qurgle
+  - Wurgle
+  - Rurgle
+  - Turgle
+  - Yurgle
+  - Iurgle
+  - Ourgle
+  - Purgle
+  - Aurgle
+  - Surgle
+  - Durgle
+  - Hurgle
+  - Furgle
+  - Jurgle
+  - Lurgle
+  - Kurgle
+  - Murgle
+  - Burgle
   ZombieFliars:
   - '"The Intelligent"'
   - '"Of the Compost"'
@@ -95,6 +166,13 @@ MonoBehaviour:
   - '"The Crypt Dancer"'
   - '"Window Peeper"'
   - '"The Chosen One"'
+  - '"The Academic"'
+  - '"Starry Eyed"'
+  - '"Of the Smell"'
+  - '"Of the Dirt"'
+  - '"The Handler"'
+  - '"Poker Face"'
+  - '"Lubbock"'
   ZombiePictures:
   - {fileID: 21300000, guid: ead2068742297274cb3618e4d94f906a, type: 3}
   - {fileID: 21300000, guid: 9de0ecf381a14674cb80887ef9c5e130, type: 3}

@@ -125,8 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89cf6f625103eb41bdd3b0e40f42cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UiPicture: {fileID: 21300000, guid: cd34952ebb1c6b6418550d14261183dc, type: 3}
-  ContainerText: Cum in my mouth
+  UiPicture: {fileID: 21300000, guid: 5a7f3cade5a83f247bd9ee562144ae90, type: 3}
+  ContainerText: You find a suspicious looking pile of junk, do you search through
+    it or leave it behind?
   interactPos: {fileID: 3702294391862317671}
   itemWeight: 10
   fightWeight: 8
