@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(WaitAndLoose());
     }
 
+    public void WinGame(string scene){
+        StartCoroutine(WaitAndLoad(3f,scene));
+    }
+
     private IEnumerator WaitAndLoose()
     {
         yield return new WaitForSeconds(3f);
