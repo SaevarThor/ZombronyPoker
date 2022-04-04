@@ -9,6 +9,7 @@ public class EncounterManager : MonoBehaviour
     [SerializeField] private GameObject table;
     [SerializeField] private Camera camera;
     [SerializeField] private GameObject combatZone;
+    [SerializeField] private bool isBossFight = false;
     private float combatInitTimer = 3;
     private float dropHeight = 40;
     private GameObject activeZone;
@@ -37,6 +38,8 @@ public class EncounterManager : MonoBehaviour
     {
         originalCamRot = camera.transform.rotation;
         orignalCamePos = camera.transform.position;
+        if (isBossFight)
+            StartCombat();
     }
 
     public void CanAttack()
