@@ -9255,6 +9255,7 @@ MonoBehaviour:
   - {fileID: 831670670}
   - {fileID: 1279764317}
   - {fileID: 756012094}
+  bossFight: 0
 --- !u!1 &5082343572795980148
 GameObject:
   m_ObjectHideFlags: 0

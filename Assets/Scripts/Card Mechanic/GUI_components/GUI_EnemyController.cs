@@ -16,12 +16,13 @@ public class GUI_EnemyController : MonoBehaviour {
     private List<Card> myCardsInHand = new List<Card>();
 
     [SerializeField] private CardSlot[] Slots;
+    [SerializeField] private bool bossFight = false;
 
     private bool isDoing; 
-    
+     
     private void Start()
     {
-        myCardsInHand = DeckController.Instance.generateOpponentDeck(cardSize);
+        myCardsInHand = DeckController.Instance.generateOpponentDeck(cardSize, bossFight);
         Debug.Log($"Recieiving {myCardsInHand.Count} cards");
 
         foreach (var card in myCardsInHand)
