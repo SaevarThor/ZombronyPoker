@@ -47,7 +47,7 @@ public class OverWorldManager : MonoBehaviour
             move = false;
             if (!positions[curIndex].HasEncounter) TravelToNext();
     
-            if (GameManager.Instance.PlayerIsDead || String.IsNullOrEmpty(positions[curIndex].EncounterSceneName)) return;
+            if (String.IsNullOrEmpty(positions[curIndex].EncounterSceneName)) return;
             
             GameManager.Instance.MapPosition = curIndex;
             SceneLoadingManager.LoadNewScene(positions[curIndex].EncounterSceneName);
