@@ -495,35 +495,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6039915038985890544, guid: e9c91b7c64eb095478169e77599b3b1b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -35.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 6039915038985890544, guid: e9c91b7c64eb095478169e77599b3b1b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 6967956582865810622, guid: e9c91b7c64eb095478169e77599b3b1b,
-        type: 3}
-      propertyPath: m_NavMeshLayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6967956582865810622, guid: e9c91b7c64eb095478169e77599b3b1b,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8859640123923972468, guid: e9c91b7c64eb095478169e77599b3b1b,
         type: 3}
       propertyPath: m_Name
       value: Encounter02
-      objectReference: {fileID: 0}
-    - target: {fileID: 8859640123923972468, guid: e9c91b7c64eb095478169e77599b3b1b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c91b7c64eb095478169e77599b3b1b, type: 3}
