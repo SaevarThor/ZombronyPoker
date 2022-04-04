@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitAndLoose()
     {
         yield return new WaitForSeconds(3f);
+        Destroy(this.gameObject);
         SceneLoadingManager.LoadNewScene("MainMenu");
     }
 }
