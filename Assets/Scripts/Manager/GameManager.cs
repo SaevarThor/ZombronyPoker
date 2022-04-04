@@ -70,6 +70,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         Destroy(this.gameObject);
-        SceneLoadingManager.LoadNewScene("MainMenu");
+        SceneLoadingManager.LoadNewScene("LoseScene");
     }
 }
