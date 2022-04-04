@@ -17,6 +17,9 @@ public class OverWorldUI : MonoBehaviour
     [SerializeField] private Button syringeButton;
     private int syringes;
 
+    public GameObject Half;
+    public GameObject ALmost;
+
     public AudioSource heal;
 
     private void Awake()
@@ -66,5 +69,17 @@ public class OverWorldUI : MonoBehaviour
         
         if (ZombSlider.value < newValue)
             ZombSlider.value += (Time.deltaTime * 3);
+
+        if (ZombSlider.value > 10)
+        {
+            Half.SetActive(true);
+        } else 
+            Half.SetActive(false);
+
+        if (ZombSlider.value > 16)
+        {
+            ALmost.SetActive(true);
+        } else 
+            ALmost.SetActive(false);
     }
 }
