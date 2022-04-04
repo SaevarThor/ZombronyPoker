@@ -45,4 +45,15 @@ public class GameManager : MonoBehaviour
         
         SceneLoadingManager.LoadNewScene(sceneName);
     }
+
+    public void LoseGame()
+    {
+        StartCoroutine(WaitAndLoose());
+    }
+
+    private IEnumerator WaitAndLoose()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneLoadingManager.LoadNewScene("MainMenu");
+    }
 }

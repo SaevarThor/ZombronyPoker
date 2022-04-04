@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private SearchContainer searchContainer;
 
     public bool IsFighting;
+    public Animator Anim; 
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         agent.speed = speed;
         agent.angularSpeed = rotationSpeed;
     }
@@ -84,6 +86,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Anim.SetFloat("Speed", agent.velocity.magnitude);
         if (isLeaving)
         {
             if (Vector3.Distance(transform.position, agent.destination) < 1)

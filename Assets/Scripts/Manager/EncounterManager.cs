@@ -94,23 +94,20 @@ public class EncounterManager : MonoBehaviour
         camera.transform.position = orignalCamePos;
         camera.transform.rotation = originalCamRot;
 
-        Player.Instance.IsFighting = false;
         
         SoundManager.Instance.SetFight(false);
 
         if (win)
         {
             //Kill off zombie and players. 
+            Player.Instance.IsFighting = false;
             Player.Instance.SetMovement(true);
             fightingZombie.Die();
         }
         else
         {
             fightingZombie.Celebrate();
-            //Kill Players
-            //End game
-            SceneLoadingManager.LoadNewScene("MainMenu");
-            Destroy(GameManager.Instance.GetComponent<GameObject>());
+            GameManager.Instance.LoseGame();
         }
     }
 

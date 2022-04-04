@@ -22,6 +22,8 @@ public class Zombie : MonoBehaviour
     private bool canMove = true;
     private Transform playerTrans;
 
+    public Animator anim;
+
     private void Awake()
     {
         agent = this.GetComponent<NavMeshAgent>();
@@ -58,6 +60,7 @@ public class Zombie : MonoBehaviour
 
     private void Update()
     {
+        anim.SetFloat("Speed", agent.velocity.magnitude);
         if (!canMove) return; 
         if (state == zombieState.Patroling)
         {
@@ -89,12 +92,15 @@ public class Zombie : MonoBehaviour
     public void Die()
     {
         //Play anim and die
-        Destroy(this.gameObject);
+        
+        //Destroy(this.gameObject, 2f);
+        anim.SetBool("Die", true);
+        Destroy(this);
     }
 
     public void Celebrate()
     {
-        //Play anim
+        anim.SetBool("Dance", true);
     }
 
     private void OnTriggerEnter(Collider other)
