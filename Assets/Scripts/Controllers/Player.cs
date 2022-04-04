@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     private NavMeshAgent agent;
     private bool canMove = true;
     private bool isSearching;
-    private bool isLeaving;
-    private bool isWin;
+    public bool isLeaving;
+    public bool isWin;
     private SearchContainer searchContainer;
 
     public bool IsFighting;
