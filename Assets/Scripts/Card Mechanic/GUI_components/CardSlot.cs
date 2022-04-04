@@ -57,6 +57,8 @@ public class CardSlot : MonoBehaviour, IClickable
    {
       State = Slotstate.Empty;
       heldCard.state = CardState.Destroyed;
+      
+      VfxManager.Instance.SpawnSkull(transform.position, transform.rotation);
 
       if (!IsEnemy)
       {

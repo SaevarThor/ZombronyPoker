@@ -67,6 +67,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f710759f83707224687f4ea718c1da96, type: 3}
   - {fileID: 21300000, guid: 5b441480c5c38f642903c85f2e598084, type: 3}
   - {fileID: 21300000, guid: 14e04d85f6312084aaa80c3306d2d088, type: 3}
+  Description:
+  - Complains about the weather
+  - Sings badly in the shower
+  - Puts pineapple on pizza
+  - Has three nipples but tells people the third one is a birth defect
+  - Watches Aliens Vs Predators every Lent
+  - Plays Among Us public lobbies
+  - Enjoys country music
   ZombieNames:
   - Urg
   - Rawr
@@ -90,3 +98,11 @@ MonoBehaviour:
   ZombiePictures:
   - {fileID: 21300000, guid: ead2068742297274cb3618e4d94f906a, type: 3}
   - {fileID: 21300000, guid: 9de0ecf381a14674cb80887ef9c5e130, type: 3}
+  ZombieDescription:
+  - Enjoyes Hiking
+  - Loves his mother
+  - Donates to charity
+  - Eats children but only the misbehaving ones
+  - Runs a million dollar company
+  - Runs away from his responsibilites
+  - Keeps his eyes open while kissing

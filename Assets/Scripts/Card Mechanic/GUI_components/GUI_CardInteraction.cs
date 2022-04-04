@@ -15,6 +15,7 @@ public class GUI_CardInteraction : MonoBehaviour {
     [SerializeField] private TMP_Text cardAttack;
     [SerializeField] private TMP_Text cardCost;
     [SerializeField] private Image profilePic;
+    [SerializeField] private Image selectionGraphic;
 
     private void Start() {
         DeSelect();
@@ -37,12 +38,14 @@ public class GUI_CardInteraction : MonoBehaviour {
     }
 
     public void Select(){
-        this.transform.GetComponent<MeshRenderer>().material = MaterialSelected;
+        //this.transform.GetComponent<MeshRenderer>().material = MaterialSelected;
+        selectionGraphic.enabled = true;
         Selected = true;
     }
 
     public void DeSelect(){
-        this.transform.GetComponent<MeshRenderer>().material = MaterialNotSelected;
+        //this.transform.GetComponent<MeshRenderer>().material = MaterialNotSelected;
+        selectionGraphic.enabled = false;
         Selected = false;
     }
 

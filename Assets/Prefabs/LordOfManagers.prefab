@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7778919461788501475}
   - component: {fileID: 996761934579856612}
   - component: {fileID: 6885255992359875507}
+  - component: {fileID: 6678806318508899041}
   m_Layer: 0
   m_Name: LordOfManagers
   m_TagString: Untagged
@@ -303,3 +304,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6678806318508899041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091212591975294569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f596281cdd3e2848a8e2b29f8e05793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SkullPefab: {fileID: 3954533983231277232, guid: 30ac4a7656f61414599a0a709f05b5a3,
+    type: 3}
+  FirePrefab: {fileID: 7149922026061716460, guid: 0ca6246351af0be4fa5cfc6384897e25,
+    type: 3}
