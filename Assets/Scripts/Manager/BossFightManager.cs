@@ -22,14 +22,14 @@ public class BossFightManager : MonoBehaviour {
     private void PlayerWin(){
         //show win screen
         Debug.Log("Player won! show win screen");
-        GameManager.Instance.WinGame("WinScene");
+        GameManager.Instance.WinGame("LoseScene Bad");
     }
 
     private void PlayerLoss(){
         //show loss screen
         Debug.Log("Player lost! show loss screen");
-
         GameManager.Instance.LoseGame();
+        
     }
 
 

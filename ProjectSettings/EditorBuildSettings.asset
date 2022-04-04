@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LoseScene Bad.unity
     guid: dbda21de9b8c4d3498ae4ae0ef454113
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 510dd510227e08c4f83684113b6f847b
+  - enabled: 1
+    path: Assets/Scenes/WinScene Good.unity
+    guid: d37d3b6e596d1094c8436552461ca630
+  - enabled: 1
+    path: Assets/Scenes/BossIntro.unity
+    guid: 914297a16bfd461458726f2cff366ae6
   m_configObjects: {}
