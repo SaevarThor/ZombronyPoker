@@ -66,7 +66,7 @@ public class DeckController : MonoBehaviour {
 
             if (isBossDeck){
                 size = 1; 
-                deck.Add(CreateBossCard("The Player :O"));
+                deck.Add(CreateBossCard("You"));
                 BoardController.Instance.CardsLeftOpponent = size;
                 return deck;
             }
@@ -111,31 +111,32 @@ public class DeckController : MonoBehaviour {
         }
         // generate random player cards
         public Card generateCard(){
+            Flair flair = Swag.Flairs[Random.Range(0,Swag.Flairs.Length)];
             //Generate a random name for the card
             string name = string.Format("{0} {1} {2}", 
             Swag.FirstNames[Random.Range(0,Swag.FirstNames.Length)],
             Swag.LastNames[Random.Range(0,Swag.LastNames.Length)],
-            Swag.Flairs[Random.Range(0,Swag.Flairs.Length)]);
+            flair.flair);
 
             string description = Swag.Description[Random.Range(0, Swag.Description.Length)];
             
             // Create a new card with random stats 
-            return new Card(name, description, Random.Range(1,10),Random.Range(1,10),
+            return new Card(name, description,flair.health,flair.damage,
                 Swag.Pictures[Random.Range(0, Swag.Pictures.Length)],CardGender.man, CardFaction.player);
             
         }
 
         private Card generateEnemyCard(){
+            Flair flair = Swag.ZombieFliars[Random.Range(0,Swag.ZombieFliars.Length)];
             //Generate a random name for the card
             string name = string.Format("{0} {1} {2}", 
             Swag.ZombieNames[Random.Range(0,Swag.ZombieNames.Length)],
             Swag.ZombieLastNames[Random.Range(0,Swag.ZombieLastNames.Length)],
-            Swag.ZombieFliars[Random.Range(0,Swag.ZombieFliars.Length)]);
-
+            flair.flair);
             string description = Swag.ZombieDescription[Random.Range(0, Swag.ZombieDescription.Length)];
             // Create a new card with random stats 
             
-            Card gen = new Card(name, description, Random.Range(1,10),Random.Range(1,4),
+            Card gen = new Card(name, description, flair.health, flair.damage,
                 Swag.ZombiePictures[Random.Range(0, Swag.ZombiePictures.Length)],CardGender.man, CardFaction.Enemy);
             return gen; 
         }
