@@ -59,6 +59,7 @@ public class BoardController : MonoBehaviour {
         cardsLeft = playerDeck.Count;
         opponentDeck = deckController.OpponentDeck;
         resourcepool = 100;
+
     }
 
     private void Update() {
@@ -103,6 +104,13 @@ public class BoardController : MonoBehaviour {
                 OpponentTurn = false;
             }
         }
+    }
+
+    public void InitializeTurn(GUI_EnemyController _enemy){
+        Enemy = _enemy;
+        OpponentTurn = true;
+        PlayerTurn = false;
+        Enemy.EnemyTurn();
     }
 
     // Actions
