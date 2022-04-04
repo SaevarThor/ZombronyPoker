@@ -49,6 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CursorHover: {fileID: 2800000, guid: 5a7f3cade5a83f247bd9ee562144ae90, type: 3}
   playerCamera: {fileID: 0}
+  highlight: {fileID: 6037200879568730080, guid: a6c650336a384c747a48baf189c3a54f,
+    type: 3}
 --- !u!114 &1551795409715581145
 MonoBehaviour:
   m_ObjectHideFlags: 0

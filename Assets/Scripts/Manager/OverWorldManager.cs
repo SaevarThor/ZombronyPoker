@@ -37,7 +37,7 @@ public class OverWorldManager : MonoBehaviour
     {
         if (!move || GameManager.Instance.PlayerIsDead) return;
         
-        playerEmblem.position = Vector3.MoveTowards(playerEmblem.position, positions[curIndex].Pos, 0.001f);
+        playerEmblem.position = Vector3.MoveTowards(playerEmblem.position, positions[curIndex].Pos, 0.01f);
 
         if (Vector3.Distance(playerEmblem.position, positions[curIndex].Pos) < .05f)
         {

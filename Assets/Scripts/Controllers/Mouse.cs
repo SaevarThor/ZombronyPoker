@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Mouse : MonoBehaviour
 {
     public Texture2D CursorHover;
     [SerializeField] private Camera playerCamera;
+
+    public GameObject highlight;
+    private GameObject curhigh;
+    
+    private float yOffset = 2;
     
     void Update()
     {
@@ -26,9 +32,22 @@ public class Mouse : MonoBehaviour
         if (Physics.Raycast(ray, out _hit))
         {
             if (_hit.transform.CompareTag("Interactible"))
-                Cursor.SetCursor(CursorHover, Vector2.zero, CursorMode.Auto);
-            else 
-                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            {
+                Vector3 t = _hit.transform.position;
+                t.y += yOffset;
+                if (curhigh == null)
+                    curhigh = Instantiate(highlight, t, highlight.transform.rotation);
+            }
+            else
+            {
+                if (curhigh != null)
+                    Destroy(curhigh);
+            }
+        }
+        else
+        {
+            if (curhigh != null)
+                Destroy(curhigh);
         }
     }
     
@@ -53,7 +72,7 @@ public class Mouse : MonoBehaviour
 
                     if (area.IsEnding)
                     {
-                        SceneLoadingManager.LoadNewScene("WinScene");
+                        SceneLoadingManager.LoadNewScene("WinScene Good");
                         return;
                     }
                     
