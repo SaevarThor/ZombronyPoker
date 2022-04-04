@@ -37,12 +37,12 @@ public class GUI_CardInteraction : MonoBehaviour {
     }
 
     public void Select(){
-        this.transform.GetComponent<MeshRenderer>().material = MaterialSelected;
+        //this.transform.GetComponent<MeshRenderer>().material = MaterialSelected;
         Selected = true;
     }
 
     public void DeSelect(){
-        this.transform.GetComponent<MeshRenderer>().material = MaterialNotSelected;
+        //this.transform.GetComponent<MeshRenderer>().material = MaterialNotSelected;
         Selected = false;
     }
 
