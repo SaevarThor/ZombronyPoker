@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitAndLoose()
     {
         yield return new WaitForSeconds(3f);
-        Destroy(this.gameObject);
         SceneLoadingManager.LoadNewScene("LoseScene");
     }
 }
