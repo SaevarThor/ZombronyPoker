@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         if ((ZombificationMaxValue - .1f) <= OverWorldUI.Instance.GetValue())
         {
             Debug.Log("kill player");
-            StartCoroutine(WaitAndLoad(3, "BossFight"));
+            StartCoroutine(WaitAndLoad(3, "BossIntro"));
             PlayerIsDead = true; 
         }
     }
