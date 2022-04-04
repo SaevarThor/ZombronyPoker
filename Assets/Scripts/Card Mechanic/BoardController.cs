@@ -45,7 +45,7 @@ public class BoardController : MonoBehaviour {
     public GUI_EnemyController Enemy;
 
     public TMP_Text TurnText;
-
+    
     private void Awake() {
         if (Instance != null && Instance != this){
             Destroy(this);

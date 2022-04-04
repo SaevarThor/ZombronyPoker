@@ -392,6 +392,9 @@ MonoBehaviour:
   cardCost: {fileID: 0}
   profilePic: {fileID: 354183682949420276}
   selectionGraphic: {fileID: 8736864812916267371}
+  Front: {fileID: 354183682242185279}
+  BloodParticle: {fileID: 1929471198843923288, guid: b3f8393a1b918b143b0351f9df1a6028,
+    type: 3}
 --- !u!1 &354183681808521809
 GameObject:
   m_ObjectHideFlags: 0

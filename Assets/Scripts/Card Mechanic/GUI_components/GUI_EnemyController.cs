@@ -12,8 +12,10 @@ public class GUI_EnemyController : MonoBehaviour {
     private List<GameObject> allCards = new List<GameObject>();
     // State
     private List<Card> playerCardOnBoard = new List<Card>();
-    private List<Card> myCardsOnBoard = new List<Card>();
+    public List<Card> myCardsOnBoard = new List<Card>();
     private List<Card> myCardsInHand = new List<Card>();
+
+    public GameObject BloodParticle;
 
     [SerializeField] private CardSlot[] Slots;
     [SerializeField] private bool bossFight = false;
@@ -77,17 +79,26 @@ public class GUI_EnemyController : MonoBehaviour {
             Debug.Log($"target = {playerCardOnBoard.Count} vs attackers = {myCardsOnBoard.Count}");
             if (playerCardOnBoard.Count > 0 && myCardsOnBoard.Count > 0)
             {
-                Card target = playerCardOnBoard[Random.Range(0,playerCardOnBoard.Count)];
-                Card attacker = myCardsOnBoard[Random.Range(0,myCardsOnBoard.Count)];
-                BoardController.Instance.Attack(attacker, target);
-                CardSoundController.Instance.CardHit.Play();
-
+                StartCoroutine(AttackAndWait());
             } else 
                 Debug.LogError("No target to attack");
         }
 
         isDoing = false;
         BoardController.Instance.endTurn(CardFaction.Enemy);
+    }
+
+    private IEnumerator AttackAndWait()
+    {
+        foreach (var card in myCardsOnBoard)
+        {
+            Card target = playerCardOnBoard[Random.Range(0,playerCardOnBoard.Count)];
+            updateState();
+            BoardController.Instance.Attack(card, target);
+            CardSoundController.Instance.CardHit.Play();
+
+            yield return new WaitForSeconds(.2f);
+        }
     }
 
     private void updateState(){

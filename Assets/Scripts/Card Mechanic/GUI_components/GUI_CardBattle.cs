@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -20,6 +21,10 @@ public class GUI_CardBattle : MonoBehaviour
 
     [SerializeField] private Camera fightCamera;
     private CardCamera cardCamera;
+
+    private List<GUI_CardInteraction> placedCards = new List<GUI_CardInteraction>();
+
+    public bool InAttackState = false;
 
     private void Start() {
         BoardController.Instance.OnTurnEnd += turnEnd;
@@ -42,24 +47,27 @@ public class GUI_CardBattle : MonoBehaviour
                     // selection of card
                     if (selectedCard != null && hit.transform.CompareTag("OpponentCard")){
                         //attack the enemy card
+                        InAttackState = true;
+                        selectedCard.HasAttacked();
                         BoardController.Instance.Attack(selectedCard.thisCard, hit.transform.GetComponent<GUI_CardInteraction>().thisCard);
                         CardSoundController.Instance.CardHit.Play();
                         selectedCard.DeSelect();
-                        BoardController.Instance.endPlayerTurn();
-                        cardCamera.SetAttacking(false, .5f);
+                        selectedCard = null;
+                        CheckAttackState();
                     }
                     if (hit.transform.CompareTag("Card") && hit.transform != selectedCard){
-
                         Transform target = hit.transform;
                         // Deselect the previous card if there is one
                         deSelectCard();
-
                         selectedCard = target.GetComponent<GUI_CardInteraction>();
+                        if (InAttackState &&(selectedCard != null && selectedCard.thisCard.HasAttackedThisRound)) return;
+
+                        Debug.Log($"Selecing {selectedCard.thisCard.CardName} and has attacke = {selectedCard.thisCard.HasAttackedThisRound}");
                         selectedCard.Select();
                         
                         if (hit.transform.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnBoard)
                             cardCamera.SetAttacking(true);
-                        else 
+                        else if (!InAttackState)
                             cardCamera.SetAttacking(false);
                     } 
                     // unselection of cards DOES NOT WORK ATM
@@ -67,7 +75,10 @@ public class GUI_CardBattle : MonoBehaviour
                         // Deselect the previous card if there is one
                         Debug.Log("Deselect");
                         deSelectCard();
-                        cardCamera.SetAttacking(false, .5f);
+                        selectedCard = null;
+                        
+                        if (!InAttackState)
+                            cardCamera.SetAttacking(false, .5f);
                     } 
                     // Interact with player PlayArea
                     else if (hit.transform.CompareTag("PlayerPlayArea")&& selectedCard != null && selectedCard.thisCard.state == CardState.OnHand)
@@ -75,8 +86,10 @@ public class GUI_CardBattle : MonoBehaviour
                         hit.transform.GetComponent<IClickable>().Click(selectedCard);
                        handInteraction.RemoveFromHand(selectedCard.transform);
                        CardSoundController.Instance.PlaceCard.Play();
+                       placedCards.Add(selectedCard);
                        deSelectCard();
-                       
+                       selectedCard = null;
+
                     } 
                     // Interaction with opponent playArea
                     else if (hit.transform.CompareTag("OpponentPlayArea")) {
@@ -86,8 +99,34 @@ public class GUI_CardBattle : MonoBehaviour
                 } else {
                     // If we click off a card, deselect it
                     deSelectCard();
-                    cardCamera.SetAttacking(false,.5f);
+                    if (!InAttackState)
+                        cardCamera.SetAttacking(false,.5f);
                 }
+            }
+        }
+    }
+
+    private void CheckAttackState()
+    {
+        GUI_CardInteraction[] activeCards =
+            placedCards.Where(x => x != null && x.thisCard.state == CardState.OnBoard).ToArray();
+
+        var cardy = activeCards.FirstOrDefault(x => !x.thisCard.HasAttackedThisRound);
+
+        bool hasTarget = BoardController.Instance.Enemy.myCardsOnBoard.FirstOrDefault(x => x != null && x.state != CardState.Destroyed) != default;
+        
+        Debug.Log($"hasTarget = {hasTarget}");
+
+        if (cardy == default || !hasTarget)
+        {
+            InAttackState = false;
+            BoardController.Instance.endPlayerTurn();
+            cardCamera.SetAttacking(false, .5f);
+            Debug.Log($"Resetting {placedCards.Count} cards");
+            foreach (var card in placedCards)
+            {
+                if (card != null)
+                    card.ResetAttack();
             }
         }
     }

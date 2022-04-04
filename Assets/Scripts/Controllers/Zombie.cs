@@ -105,7 +105,6 @@ public class Zombie : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name + " entered my area");
         if (other.CompareTag("Player"))
         {
             state = zombieState.Attacking;
