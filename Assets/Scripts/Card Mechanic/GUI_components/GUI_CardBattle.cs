@@ -63,7 +63,11 @@ public class GUI_CardBattle : MonoBehaviour
                         // Deselect the previous card if there is one
                         deSelectCard();
                         selectedCard = target.GetComponent<GUI_CardInteraction>();
-                        if (InAttackState &&(selectedCard != null && selectedCard.thisCard.HasAttackedThisRound)) return;
+                        if (InAttackState && (selectedCard != null && selectedCard.thisCard.HasAttackedThisRound))
+                        {
+                            selectedCard = null;
+                            return;
+                        }
                         selectedCard.Select();
 
                         if (hit.transform.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnBoard)
@@ -82,7 +86,6 @@ public class GUI_CardBattle : MonoBehaviour
                     // unselection of cards DOES NOT WORK ATM
                     else if (hit.transform.CompareTag("Card") && hit.transform == selectedCard){
                         // Deselect the previous card if there is one
-                        Debug.Log("Deselect");
                         deSelectCard();
                         selectedCard = null;
                         
@@ -124,14 +127,11 @@ public class GUI_CardBattle : MonoBehaviour
 
         bool hasTarget = BoardController.Instance.Enemy.myCardsOnBoard.FirstOrDefault(x => x != null && x.state != CardState.Destroyed) != default;
         
-        Debug.Log($"hasTarget = {hasTarget}");
-
         if (cardy == default || !hasTarget)
         {
             InAttackState = false;
             BoardController.Instance.endPlayerTurn();
             cardCamera.SetAttacking(false, .5f);
-            Debug.Log($"Resetting {placedCards.Count} cards");
             foreach (var card in placedCards)
             {
                 if (card != null)
