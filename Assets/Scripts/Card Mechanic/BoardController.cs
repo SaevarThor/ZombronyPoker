@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using UnityEngine.UI;
 
 public class BoardController : MonoBehaviour {
 
@@ -53,6 +51,9 @@ public class BoardController : MonoBehaviour {
     public string Tut_Decide = "You can either attack or place card in a round not both";
 
     public TMP_Text TutText;
+    public TMP_Text EndText;
+
+    public bool hasEnded = false;
     
     private void Awake() {
         if (Instance != null && Instance != this){
@@ -71,7 +72,8 @@ public class BoardController : MonoBehaviour {
     }
 
     private void Update() {
-
+        if (hasEnded) return;
+        
         if (ActiveBattle) {
 
             // Check for win condition
@@ -157,7 +159,6 @@ public class BoardController : MonoBehaviour {
 
     // The attack happens in the firs IF statement I keep forgeting 
     public void Attack(Card attacker, Card target){
-        Debug.Log($"ATTACKING attacker {attacker.CardName}, {target.CardName} and hasplayedcard = {hasPlayedCard}");
         //we can only attack or play a card to the table
         if (!hasPlayedCard){
             if (attacker.Attack(target) != -1){
@@ -192,7 +193,6 @@ public class BoardController : MonoBehaviour {
             hasDrawnCard = false;
             OpponentTurn = true;
         } else{
-            Debug.Log("opponent ended turn");
             OpponentTurn = false;
             TurnText.text = "Player turn";
             
@@ -216,10 +216,9 @@ public class BoardController : MonoBehaviour {
             cardsLeft--;
             if (cardsLeft <= 0)
             {
-                //Lose
-                Debug.Log("LOSE");
+                hasEnded = true;
                 if (EncounterManager.Instance != null)
-                    EncounterManager.Instance.EndCombat(false);
+                    EncounterManager.Instance.EndCombat(false, 4);
             }
         }
         else{
@@ -227,10 +226,9 @@ public class BoardController : MonoBehaviour {
 
             if (CardsLeftOpponent <= 0)
             {
-                //Win
-                Debug.Log("WIN");
+                hasEnded = true;
                 if (EncounterManager.Instance != null)
-                    EncounterManager.Instance.EndCombat(true);
+                    EncounterManager.Instance.EndCombat(true, 4);
             }
         }
     }

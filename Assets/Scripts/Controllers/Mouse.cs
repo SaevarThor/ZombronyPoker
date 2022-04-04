@@ -10,7 +10,8 @@ public class Mouse : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            SendPosition();
+            if (Player.Instance.canMove)
+                SendPosition();
         }
     }
     

@@ -59,6 +59,7 @@ public class EncounterManager : MonoBehaviour
         fightingTable = g.GetComponent<Table>(); 
         Player.Instance.SetMovement(false); 
         Player.Instance.IsFighting = true;
+        Player.Instance.isLeaving = false;
         fightingZombie = zombie;
         
         SoundManager.Instance.SetFight(true);
@@ -89,15 +90,31 @@ public class EncounterManager : MonoBehaviour
         }
     }
 
-    public void EndCombat(bool win)
+    public void EndCombat(bool win, float leaveTimer)
     {
+        if (win)
+        {
+            Debug.Log("Win");
+            BoardController.Instance.EndText.text = "VICTORY";
+            SoundManager.Instance.PlaySoundwin();
+        }
+        else
+        {
+            BoardController.Instance.EndText.text = "Death";
+        }
+        StartCoroutine(WaitAndExit(leaveTimer, win));
+    }
+
+    private IEnumerator WaitAndExit(float timer, bool win)
+    {
+
+        yield return new WaitForSeconds(timer);
         Destroy(activeZone);
         camera.gameObject.SetActive(true);
         camera.orthographicSize = 15;
         camera.transform.position = orignalCamePos;
         camera.transform.rotation = originalCamRot;
 
-        
         SoundManager.Instance.SetFight(false);
 
         if (win)
