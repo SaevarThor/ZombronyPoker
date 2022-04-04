@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         if (ZombificationMaxValue < ZombificationTimer)
         {
             PlayerIsDead = true; 
-            StartCoroutine(WaitAndLoad(3, "BossFight"));
+            StartCoroutine(WaitAndLoad(3, "BossIntro"));
         }
     }
 
