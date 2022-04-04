@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76229dff66812c4f90fbe82bbd94126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CursorHover: {fileID: 2800000, guid: 9bba9a4981da4404abc785c77675c8d2, type: 3}
+  CursorHover: {fileID: 2800000, guid: 5a7f3cade5a83f247bd9ee562144ae90, type: 3}
   playerCamera: {fileID: 0}
 --- !u!114 &1551795409715581145
 MonoBehaviour:
