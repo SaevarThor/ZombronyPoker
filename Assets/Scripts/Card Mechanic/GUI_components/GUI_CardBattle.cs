@@ -38,6 +38,7 @@ public class GUI_CardBattle : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask)){
                     Debug.Log(hit.transform.name);
+
                     // selection of card
                     if (selectedCard != null && hit.transform.CompareTag("OpponentCard")){
                         //attack the enemy card
@@ -64,8 +65,9 @@ public class GUI_CardBattle : MonoBehaviour
                     // unselection of cards DOES NOT WORK ATM
                     else if (hit.transform.CompareTag("Card") && hit.transform == selectedCard){
                         // Deselect the previous card if there is one
+                        Debug.Log("Deselect");
                         deSelectCard();
-                        cardCamera.SetAttacking(false);
+                        cardCamera.SetAttacking(false, .5f);
                     } 
                     // Interact with player PlayArea
                     else if (hit.transform.CompareTag("PlayerPlayArea")&& selectedCard != null && selectedCard.thisCard.state == CardState.OnHand)
@@ -84,6 +86,7 @@ public class GUI_CardBattle : MonoBehaviour
                 } else {
                     // If we click off a card, deselect it
                     deSelectCard();
+                    cardCamera.SetAttacking(false,.5f);
                 }
             }
         }
