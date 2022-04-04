@@ -24,6 +24,7 @@ public class Mouse : MonoBehaviour
         {
             if (_hit.transform.CompareTag("Interactible"))
             {
+                Player.Instance.isLeaving = false;
                 var interactable = _hit.transform.GetComponent<IInteractible>();
                 if (interactable is SearchContainer)
                 {
