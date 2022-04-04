@@ -52,6 +52,8 @@ public class GUI_HandInteractions : MonoBehaviour {
     public void RemoveFromHand(Transform card){
         if (cardOnHand.Contains(card))
             cardOnHand.Remove(card);
+        
+        spaceCards();
     }
     
     public void spaceCards(){
