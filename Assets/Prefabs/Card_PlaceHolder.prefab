@@ -389,6 +389,7 @@ MonoBehaviour:
   cardHealth: {fileID: 354183681770374846}
   cardAttack: {fileID: 354183681808521815}
   cardCost: {fileID: 0}
+  profilePic: {fileID: 354183682949420276}
 --- !u!1 &354183681808521809
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,7 +55,7 @@ public class GUI_HandInteractions : MonoBehaviour {
     }
     
     public void spaceCards(){
-        float spacing = 0.125f;
+        float spacing = 0.25f;
         float offset = 0;
         foreach (Transform trans in cardOnHand){
             trans.position = this.transform.position;

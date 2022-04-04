@@ -19,9 +19,11 @@ public class GUI_CardBattle : MonoBehaviour
     public GUI_CardInteraction selectedEnemyCard;
 
     [SerializeField] private Camera fightCamera;
+    private CardCamera cardCamera;
 
     private void Start() {
         BoardController.Instance.OnTurnEnd += turnEnd;
+        cardCamera = fightCamera.GetComponent<CardCamera>();
     }
         
     private void OnDisable() {
@@ -40,8 +42,10 @@ public class GUI_CardBattle : MonoBehaviour
                     if (selectedCard != null && hit.transform.CompareTag("OpponentCard")){
                         //attack the enemy card
                         BoardController.Instance.Attack(selectedCard.thisCard, hit.transform.GetComponent<GUI_CardInteraction>().thisCard);
+                        CardSoundController.Instance.CardHit.Play();
                         selectedCard.DeSelect();
                         BoardController.Instance.endPlayerTurn();
+                        cardCamera.SetAttacking(false, .5f);
                     }
                     if (hit.transform.CompareTag("Card") && hit.transform != selectedCard){
 
@@ -51,17 +55,24 @@ public class GUI_CardBattle : MonoBehaviour
 
                         selectedCard = target.GetComponent<GUI_CardInteraction>();
                         selectedCard.Select();
+                        
+                        if (hit.transform.GetComponent<GUI_CardInteraction>().thisCard.state == CardState.OnBoard)
+                            cardCamera.SetAttacking(true);
+                        else 
+                            cardCamera.SetAttacking(false);
                     } 
                     // unselection of cards DOES NOT WORK ATM
                     else if (hit.transform.CompareTag("Card") && hit.transform == selectedCard){
                         // Deselect the previous card if there is one
                         deSelectCard();
+                        cardCamera.SetAttacking(false);
                     } 
                     // Interact with player PlayArea
                     else if (hit.transform.CompareTag("PlayerPlayArea")&& selectedCard != null && selectedCard.thisCard.state == CardState.OnHand)
                     { 
                         hit.transform.GetComponent<IClickable>().Click(selectedCard);
                        handInteraction.RemoveFromHand(selectedCard.transform);
+                       CardSoundController.Instance.PlaceCard.Play();
                        deSelectCard();
                        
                     } 

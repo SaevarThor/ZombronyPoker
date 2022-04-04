@@ -17,6 +17,8 @@ public class OverWorldUI : MonoBehaviour
     [SerializeField] private Button syringeButton;
     private int syringes;
 
+    public AudioSource heal;
+
     private void Awake()
     {
         if (Instance != this && Instance != null)
@@ -52,6 +54,7 @@ public class OverWorldUI : MonoBehaviour
             syringeAmount.text = syringes.ToString();
             newValue -= InventoryManager.Instance.SyringeHeal;
             ZombSlider.value = GameManager.Instance.ZombificationTimer;
+            heal.Play();
         }
 
         syringeButton.interactable = syringes != 0;

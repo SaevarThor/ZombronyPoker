@@ -68,6 +68,8 @@ public class GUI_EnemyController : MonoBehaviour {
             
             myCardsOnBoard.Add(randomCard);
             myCardsInHand.Remove(randomCard);
+            
+            CardSoundController.Instance.PlaceCard.Play();
         }
         else
         {
@@ -77,6 +79,8 @@ public class GUI_EnemyController : MonoBehaviour {
                 Card target = playerCardOnBoard[Random.Range(0,playerCardOnBoard.Count)];
                 Card attacker = myCardsOnBoard[Random.Range(0,myCardsOnBoard.Count)];
                 BoardController.Instance.Attack(attacker, target);
+                CardSoundController.Instance.CardHit.Play();
+
             } else 
                 Debug.LogError("No target to attack");
         }

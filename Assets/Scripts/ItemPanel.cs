@@ -27,7 +27,13 @@ public class ItemPanel : MonoBehaviour
     public string[] NothingButtonText;
     public string[] FightButtonText;
 
-    public GameObject Enemy; 
+    public GameObject Enemy;
+
+    public AudioSource source;
+    public AudioClip nothingClip;
+    public AudioClip itemClip;
+    public AudioClip cardClip;
+    public AudioClip zombieClip;
 
     private void Start()
     {
@@ -47,14 +53,16 @@ public class ItemPanel : MonoBehaviour
         Text.text = ItemFlavorText[Random.Range(0, ItemFlavorText.Length)];
         ButtonText.text = ItemButtonText[Random.Range(0, ItemButtonText.Length)];
         Image.sprite = ItemImage;
+        playSound(itemClip);
     }
     
     public void SetCardPanel(string charName)
     {
         UiParent.SetActive(true);
-        Text.text = CardFlavorText[Random.Range(0, CardFlavorText.Length)] + $"\n {charName} has entered the fight!";
+        Text.text = CardFlavorText[Random.Range(0, CardFlavorText.Length)] + $"\n \n {charName} has entered the fight!";
         ButtonText.text = CardButtonText[Random.Range(0, CardButtonText.Length)];
         Image.sprite = CardImage;
+        playSound(cardClip);
     }
     
     public void SetFightPanel()
@@ -64,7 +72,8 @@ public class ItemPanel : MonoBehaviour
         ButtonText.text = FightButtonText[Random.Range(0, FightButtonText.Length)];
         Image.sprite = FightImage;
         GameObject g = Instantiate(GameManager.Instance.ZombiePrefab, Player.Instance.GetRandomPlayerPos(), Quaternion.identity);
-
+        playSound(zombieClip);
+        
         g.GetComponent<Zombie>().AttackPlayer();
     }
 
@@ -74,6 +83,12 @@ public class ItemPanel : MonoBehaviour
         Text.text = NothingFlavorText[Random.Range(0, NothingFlavorText.Length)];
         ButtonText.text = NothingButtonText[Random.Range(0, NothingButtonText.Length)];
         Image.sprite = NothingImage;
+        playSound(nothingClip);
+    }
 
+    private void playSound(AudioClip clip)
+    {
+        source.clip = clip;
+        source.Play();
     }
 }

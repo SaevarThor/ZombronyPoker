@@ -19,7 +19,7 @@ public class BoardController : MonoBehaviour {
     public int resourcepool;
     public bool ActiveBattle = false;
     public bool PlayerTurn = false;
-    public bool OpponentTurn = false;
+    public bool OpponentTurn = true;
     public Card LastDrawnCard;
     public Card LastPlayedCard;
 

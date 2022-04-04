@@ -204,6 +204,31 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 19.866943
       objectReference: {fileID: 0}
+    - target: {fileID: 8267005163064615474, guid: 15d1f17ece373594e8a0c3c977e9f542,
+        type: 3}
+      propertyPath: source
+      value: 
+      objectReference: {fileID: 3059284875686892451}
+    - target: {fileID: 8267005163064615474, guid: 15d1f17ece373594e8a0c3c977e9f542,
+        type: 3}
+      propertyPath: cardClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 07e232ff0bf8d9545a6b194dad53400a, type: 3}
+    - target: {fileID: 8267005163064615474, guid: 15d1f17ece373594e8a0c3c977e9f542,
+        type: 3}
+      propertyPath: itemClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 07e232ff0bf8d9545a6b194dad53400a, type: 3}
+    - target: {fileID: 8267005163064615474, guid: 15d1f17ece373594e8a0c3c977e9f542,
+        type: 3}
+      propertyPath: zombieClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b57ef41f8ca465044830f779445844d3, type: 3}
+    - target: {fileID: 8267005163064615474, guid: 15d1f17ece373594e8a0c3c977e9f542,
+        type: 3}
+      propertyPath: nothingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c0694c0a928d56547a717918ead1b9b9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d1f17ece373594e8a0c3c977e9f542, type: 3}
 --- !u!114 &5488148524978678313 stripped
@@ -242,6 +267,108 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4959242547908127621}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5488148525761503210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 647136070433518703, guid: 15d1f17ece373594e8a0c3c977e9f542,
+    type: 3}
+  m_PrefabInstance: {fileID: 4959242547908127621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3059284875686892451
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488148525761503210}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.428
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &5488148526403871205 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 647136069803035232, guid: 15d1f17ece373594e8a0c3c977e9f542,

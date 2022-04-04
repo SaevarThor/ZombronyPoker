@@ -18,7 +18,8 @@ public class EncounterManager : MonoBehaviour
     private Vector3 attackPosition;
     private bool zoomCamera;
 
-    private Transform orignalCamerTransform;
+    private Vector3 orignalCamePos;
+    private Quaternion originalCamRot;
     
     public ItemPanel ItemVisual;
 
@@ -32,7 +33,8 @@ public class EncounterManager : MonoBehaviour
 
     private void Start()
     {
-        orignalCamerTransform = camera.transform;
+        originalCamRot = camera.transform.rotation;
+        orignalCamePos = camera.transform.position;
     }
 
     public void RequestCombat(Vector3 playerPos, Vector3 zombiePos, Zombie zombie)
@@ -48,6 +50,8 @@ public class EncounterManager : MonoBehaviour
         Player.Instance.SetMovement(false);
 
         fightingZombie = zombie;
+        
+        SoundManager.Instance.SetFight(true);
 
         StartCoroutine(StartCombat());
     }
@@ -80,8 +84,10 @@ public class EncounterManager : MonoBehaviour
         Destroy(activeZone);
         camera.gameObject.SetActive(true);
         camera.orthographicSize = 15;
-        camera.transform.rotation = orignalCamerTransform.rotation;
-        camera.transform.position = orignalCamerTransform.position;
+        camera.transform.position = orignalCamePos;
+        camera.transform.rotation = originalCamRot;
+        
+        SoundManager.Instance.SetFight(false);
 
         if (win)
         {

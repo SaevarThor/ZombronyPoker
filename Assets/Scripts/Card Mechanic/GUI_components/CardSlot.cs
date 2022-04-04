@@ -41,7 +41,13 @@ public class CardSlot : MonoBehaviour, IClickable
    {
       State = Slotstate.Empty;
       heldCard.state = CardState.Destroyed;
+      if (Visual == null)
+         Visual = transform.GetChild(0).gameObject;
       Visual.SetActive(true);
+      
+      if (collider == null) 
+         collider = GetComponent<BoxCollider>(); 
+      
       collider.enabled = true;
       heldCard.OnCardDestroyed -= EmptySlot;
       Destroy(alsoHeldCard);
