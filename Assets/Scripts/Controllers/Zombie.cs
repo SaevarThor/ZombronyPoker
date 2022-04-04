@@ -37,7 +37,7 @@ public class Zombie : MonoBehaviour
 
     private void SetNextPatrolPoint()
     {
-        if (patrolPoints.Length == 0 || patrolPoints[0] != null) return;
+        if (patrolPoints.Length == 0 || patrolPoints[0] == null) return;
         
         if ((patrolId + 1) == patrolPoints.Length) patrolId = 0;
         else patrolId++;
@@ -67,7 +67,7 @@ public class Zombie : MonoBehaviour
             }
         }
         
-        if (state == zombieState.Attacking)
+        if (state == zombieState.Attacking && !Player.Instance.IsFighting)
         {
             agent.SetDestination(playerTrans.position);
             if (Vector3.Distance(transform.position, playerTrans.position) < 4)
