@@ -60,11 +60,19 @@ public class DeckController : MonoBehaviour {
         }
 
         //generate an entire deck of cards for the opponent
-        public List<Card> generateOpponentDeck (int size, int strength = 1)
+        public List<Card> generateOpponentDeck (int size, bool isBossDeck = false)
         {
+            List<Card> deck = new List<Card>();
+
+            if (isBossDeck){
+                size = 1; 
+                deck.Add(CreateBossCard("The Player :O"));
+                BoardController.Instance.CardsLeftOpponent = size;
+                return deck;
+            }
+            
             BoardController.Instance.CardsLeftOpponent = size;
             
-            List<Card> deck = new List<Card>();
             for (int i = 0; i < size; i++)
             {
                 Card card = generateEnemyCard();
@@ -140,5 +148,14 @@ public class DeckController : MonoBehaviour {
     public void removeCardFromDeck(Card card){
         if (PlayerDeck.Contains(card))
             PlayerDeck.Remove(card);
+    }
+
+    public Card CreateBossCard(string name){
+        return new Card(name, 
+        "The hunger has overcome you and now those you loved are now looking very much like your next meal", 
+        20, 2,
+        Swag.ZombiePictures[0], 
+        CardGender.man, 
+        CardFaction.Enemy);
     }
 }
