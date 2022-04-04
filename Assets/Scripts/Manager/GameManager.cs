@@ -34,8 +34,7 @@ public class GameManager : MonoBehaviour
         if (ZombificationMaxValue < ZombificationTimer)
         {
             PlayerIsDead = true; 
-            //StartCoroutine(WaitAndLoad(3, "Encounter_PlayerZombie"));
-            Debug.Log("Kill Player");
+            StartCoroutine(WaitAndLoad(3, "BossFight"));
         }
     }
 

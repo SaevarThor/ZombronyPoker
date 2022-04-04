@@ -204,7 +204,8 @@ public class BoardController : MonoBehaviour {
             {
                 //Lose
                 Debug.Log("LOSE");
-                EncounterManager.Instance.EndCombat(false);
+                if (EncounterManager.Instance != null)
+                    EncounterManager.Instance.EndCombat(false);
             }
         }
         else{
@@ -214,7 +215,8 @@ public class BoardController : MonoBehaviour {
             {
                 //Win
                 Debug.Log("WIN");
-                EncounterManager.Instance.EndCombat(true);
+                if (EncounterManager.Instance != null)
+                    EncounterManager.Instance.EndCombat(true);
             }
         }
     }
