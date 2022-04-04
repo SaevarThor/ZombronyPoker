@@ -108,9 +108,11 @@ public class DeckController : MonoBehaviour {
             Swag.FirstNames[Random.Range(0,Swag.FirstNames.Length)],
             Swag.LastNames[Random.Range(0,Swag.LastNames.Length)],
             Swag.Flairs[Random.Range(0,Swag.Flairs.Length)]);
+
+            string description = Swag.Description[Random.Range(0, Swag.Description.Length)];
             
             // Create a new card with random stats 
-            return new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,10),
+            return new Card(name, description, Random.Range(1,10),Random.Range(1,10),
                 Swag.Pictures[Random.Range(0, Swag.Pictures.Length)],CardGender.man, CardFaction.player);
             
         }
@@ -122,9 +124,10 @@ public class DeckController : MonoBehaviour {
             Swag.ZombieLastNames[Random.Range(0,Swag.ZombieLastNames.Length)],
             Swag.ZombieFliars[Random.Range(0,Swag.ZombieFliars.Length)]);
 
+            string description = Swag.ZombieDescription[Random.Range(0, Swag.ZombieDescription.Length)];
             // Create a new card with random stats 
             
-            Card gen = new Card(name, "Generic card", Random.Range(1,10),Random.Range(1,4),
+            Card gen = new Card(name, description, Random.Range(1,10),Random.Range(1,4),
                 Swag.ZombiePictures[Random.Range(0, Swag.ZombiePictures.Length)],CardGender.man, CardFaction.Enemy);
             return gen; 
         }
