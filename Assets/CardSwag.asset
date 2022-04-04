@@ -64,74 +64,74 @@ MonoBehaviour:
   - Martinoy
   Flairs:
   - flair: '"Of the Flesh"'
+    damage: 4
+    health: 7
+  - flair: '"The Destroyer"'
+    damage: 6
+    health: 4
+  - flair: '"The Cuckholded"'
+    damage: 3
+    health: 3
+  - flair: '"The Sickly"'
+    damage: 3
+    health: 3
+  - flair: '"Of The Valley"'
+    damage: 4
+    health: 4
+  - flair: '"Certified Badass"'
     damage: 3
     health: 6
-  - flair: '"The Destroyer"'
+  - flair: '"The Spin Doctor"'
     damage: 5
     health: 3
-  - flair: '"The Cuckholded"'
-    damage: 2
+  - flair: '"Rat King"'
+    damage: 3
+    health: 7
+  - flair: '"Rat Queen"'
+    damage: 7
+    health: 3
+  - flair: '"Battery Licker"'
+    damage: 4
+    health: 4
+  - flair: '"Lubbock"'
+    damage: 9
+    health: 9
+  - flair: '"Of Many Moons"'
+    damage: 4
+    health: 5
+  - flair: '"Of The Twin Sun"'
+    damage: 5
+    health: 5
+  - flair: '"Actul Cannibal"'
+    damage: 7
+    health: 3
+  - flair: '"The Raver"'
+    damage: 6
     health: 2
-  - flair: '"The Sickly"'
+  - flair: '"Of Misfortune"'
     damage: 2
-    health: 2
-  - flair: '"Of The Valley"'
+    health: 7
+  - flair: '"The Jolly"'
+    damage: 4
+    health: 3
+  - flair: '"The Machine"'
+    damage: 3
+    health: 9
+  - flair: '"Fair Hair"'
     damage: 3
     health: 3
-  - flair: '"Certified Badass"'
+  - flair: '"Brittle Bones"'
+    damage: 3
+    health: 3
+  - flair: '"Srong in Theory"'
     damage: 2
     health: 5
-  - flair: '"The Spin Doctor"'
-    damage: 4
-    health: 2
-  - flair: '"Rat King"'
-    damage: 2
-    health: 6
-  - flair: '"Rat Queen"'
-    damage: 6
-    health: 2
-  - flair: '"Battery Licker"'
-    damage: 2
-    health: 2
-  - flair: '"Lubbock"'
-    damage: 8
-    health: 8
-  - flair: '"Of Many Moons"'
-    damage: 2
-    health: 3
-  - flair: '"Of The Twin Sun"'
-    damage: 4
-    health: 4
-  - flair: '"Actul Cannibal"'
-    damage: 6
-    health: 2
-  - flair: '"The Raver"'
-    damage: 5
-    health: 1
-  - flair: '"Of Misfortune"'
-    damage: 1
-    health: 6
-  - flair: '"The Jolly"'
-    damage: 3
-    health: 2
-  - flair: '"The Machine"'
-    damage: 2
-    health: 8
-  - flair: '"Fair Hair"'
-    damage: 2
-    health: 2
-  - flair: '"Brittle Bones"'
-    damage: 2
-    health: 2
-  - flair: '"Srong in Theory"'
-    damage: 1
-    health: 4
   - flair: '"Actual Child"'
-    damage: 1
-    health: 1
+    damage: 2
+    health: 2
   - flair: '"Who am I"'
-    damage: 4
-    health: 3
+    damage: 5
+    health: 4
   Pictures:
   - {fileID: 21300000, guid: 8991ff568c7732449afa68740c8e9975, type: 3}
   - {fileID: 21300000, guid: e0a84349e91997149adacbc78261f10b, type: 3}
